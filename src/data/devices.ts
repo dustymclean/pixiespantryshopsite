@@ -34,102 +34,148 @@ export interface Device {
 
 export const devices: Device[] = [
   {
-    id: 'tinymight-2',
-    name: 'TinyMight 2',
-    brand: 'TinyMight',
-    image: 'https://picsum.photos/seed/tm2/400/400',
-    auditScore: 94,
+    id: 'volcano-hybrid',
+    name: 'Volcano Hybrid',
+    brand: 'Storz & Bickel',
+    image: 'https://picsum.photos/seed/volcano/400/400',
+    auditScore: 98,
     metrics: {
-      vaporPathPurity: 98,
-      thermalStability: 92,
-      bioCompatibility: 95,
-      sanitization: 90,
-      traceability: 96
+      vaporPathPurity: 99,
+      thermalStability: 99,
+      bioCompatibility: 98,
+      sanitization: 96,
+      traceability: 100
     },
     specs: {
-      materials: ['American Walnut', 'Grade 2 Titanium', 'Borosilicate Glass', 'Stainless Steel'],
-      heatingType: 'On-demand Convection',
-      tempRange: '250°F - 460°F',
-      battery: 'Replaceable 18650'
+      materials: ['Stainless Steel', 'PEEK Polymer', 'Medical Grade Silicone', 'Borosilicate Glass'],
+      heatingType: 'Convection',
+      tempRange: '104°F - 446°F',
+      battery: 'Mains Powered (AC)'
     },
     teardown: [
       {
-        title: 'Outer Chassis Removal',
-        description: 'The outer shell is crafted from solid American Walnut, providing natural insulation and a bio-inert exterior.',
-        material: 'Solid American Walnut',
-        auditRelevance: 'Natural materials reduce the need for synthetic polymers and industrial coatings on the exterior.',
+        title: 'Medical-Grade Air Pump',
+        description: 'The internal diaphragm pump is built to medical standards, ensuring a constant, filtered air stream for balloon inflation.',
+        material: 'High-Performance Elastomers',
+        auditRelevance: 'ISO 13485 compliance ensures the air source is free from mechanical lubricants or particulate shedding.',
         technicalTerm: {
-          term: 'Bio-inert',
-          definition: 'A material that does not initiate a response or interact with biological tissue.'
+          term: 'ISO 13485',
+          definition: 'An international standard that outlines the requirements for a quality management system specific to the medical devices industry.'
         }
       },
       {
-        title: 'Titanium Cylinder Extraction',
-        description: 'The heart of the device is a Grade 2 Titanium heating chamber, ensuring rapid heat transfer without metallic off-gassing.',
-        material: 'Grade 2 Titanium',
-        auditRelevance: 'Meets MGV-1 standards for high-heat zone stability and zero heavy metal leaching.',
-        safetyWarning: 'Titanium retains heat significantly; ensure device is fully cooled before handling internal components.'
-      },
-      {
-        title: 'Glass Vapor Path Inspection',
-        description: 'The vapor travels through a pure borosilicate glass tube, completely isolated from all electronic components.',
-        material: 'Borosilicate Glass 3.3',
-        auditRelevance: 'Hermetically isolated airpath ensures zero contact with PCBs or solder.',
-        technicalTerm: {
-          term: 'Hermetic Isolation',
-          definition: 'A complete, airtight seal that prevents any exchange of gases or particles between two environments.'
-        }
-      },
-      {
-        title: 'Stainless Steel Cooling Unit',
-        description: 'A multi-stage stainless steel cooling unit sits atop the glass path to dissipate heat before inhalation.',
+        title: 'Stainless Steel Heat Exchanger',
+        description: 'A massive aluminum heat exchanger is encapsulated in stainless steel to prevent metallic leaching while maintaining extreme thermal mass.',
         material: '316L Stainless Steel',
-        auditRelevance: 'Medical-grade steel ensures durability and ease of sanitization via ISO immersion.'
+        auditRelevance: 'Ensures the air is heated to precise temperatures without contact with heating elements or electronics.',
+        technicalTerm: {
+          term: 'Thermal Mass',
+          definition: 'The ability of a material to absorb and store heat energy.'
+        }
+      },
+      {
+        title: 'Valve & Balloon System',
+        description: 'The Easy Valve system uses medical-grade PET balloons and heat-resistant plastics for aerosol storage.',
+        material: 'Medical Grade PET / PEEK',
+        auditRelevance: 'Allows for titrated dosage delivery and aerosol cooling before inhalation.',
+        safetyWarning: 'Balloons should be replaced regularly to prevent bio-film accumulation.'
       }
     ]
   },
   {
-    id: 'venty',
-    name: 'Venty',
-    brand: 'Storz & Bickel',
-    image: 'https://picsum.photos/seed/venty/400/400',
+    id: 'arizer-solo-3',
+    name: 'Solo 3',
+    brand: 'Arizer',
+    image: 'https://picsum.photos/seed/solo3/400/400',
     auditScore: 96,
     metrics: {
-      vaporPathPurity: 95,
-      thermalStability: 99,
-      bioCompatibility: 96,
-      sanitization: 94,
-      traceability: 98
+      vaporPathPurity: 100,
+      thermalStability: 94,
+      bioCompatibility: 98,
+      sanitization: 98,
+      traceability: 92
     },
     specs: {
-      materials: ['PEEK Polymer', 'Aluminum (Heatsink)', 'Ceramic (Coated)', 'Medical Grade Silicone'],
-      heatingType: 'Hybrid Convection/Conduction',
-      tempRange: '104°F - 410°F',
-      battery: 'Internal Dual Li-Ion'
+      materials: ['Borosilicate Glass', 'Stainless Steel', 'Ceramic', 'Aluminum'],
+      heatingType: 'Hybrid (Convection/Conduction)',
+      tempRange: '122°F - 428°F',
+      battery: 'Internal Li-Ion (High Capacity)'
     },
     teardown: [
       {
-        title: 'Adjustable Airflow Manifold',
-        description: 'The top unit features a PEEK polymer manifold with adjustable dial for precise pneumatic control.',
-        material: 'PEEK (Polyether ether ketone)',
-        auditRelevance: 'High-performance thermoplastic with excellent thermal stability and chemical resistance.',
+        title: 'All-Glass Vapor Path',
+        description: 'The vapor travels exclusively through a borosilicate glass aroma tube, from the herb chamber to the mouthpiece.',
+        material: 'Borosilicate Glass 3.3',
+        auditRelevance: 'Total Thermal Isolation (TTI). Zero contact with plastics, metals, or electronics in the vapor path.',
         technicalTerm: {
-          term: 'Pneumatic Control',
-          definition: 'The management of pressurized air flow to regulate draw resistance and aerosol density.'
+          term: 'Leachate',
+          definition: 'Chemicals that migrate from a material into a liquid or gas, potentially causing contamination.'
         }
       },
       {
-        title: 'Ceramic-Coated Filling Chamber',
-        description: 'The filling chamber uses a ceramic coating over aluminum for improved hygiene and non-stick properties.',
-        material: 'Ceramic-Coated Aluminum',
-        auditRelevance: 'Ceramic interface prevents direct metal-to-botanical contact at high temperatures.',
-        safetyWarning: 'Ceramic coatings can chip if cleaned with abrasive tools; use only soft brushes or ISO soaks.'
+        title: 'Ceramic Heating Element',
+        description: 'A high-purity ceramic heater provides rapid, stable heat without the risk of oxidation found in metal coils.',
+        material: 'Alumina Ceramic',
+        auditRelevance: 'Bio-inert heating interface ensures no metallic off-gassing at operational temperatures.'
       },
       {
-        title: 'Convection Heater Core',
-        description: 'A newly designed high-power heater core capable of reaching temperature in 20 seconds with ±1°F stability.',
-        material: 'Medical Grade Alloys',
-        auditRelevance: 'Precision Thermoregulation Control (PTC) prevents accidental combustion.'
+        title: 'Isolated Airpath',
+        description: 'The intake air is physically separated from the internal electronics and battery compartment.',
+        material: 'Stainless Steel / Glass',
+        auditRelevance: 'Prevents inhalation of VOCs from circuit boards or battery components.',
+        technicalTerm: {
+          term: 'VOCs',
+          definition: 'Volatile Organic Compounds; organic chemicals that have a high vapor pressure at ordinary room temperature.'
+        }
+      }
+    ]
+  },
+  {
+    id: 'puffco-peak-pro-v2',
+    name: 'Peak Pro (V2)',
+    brand: 'Puffco',
+    image: 'https://picsum.photos/seed/peakpro/400/400',
+    auditScore: 94,
+    metrics: {
+      vaporPathPurity: 92,
+      thermalStability: 98,
+      bioCompatibility: 95,
+      sanitization: 90,
+      traceability: 94
+    },
+    specs: {
+      materials: ['Ceramic', 'Borosilicate Glass', 'Silicone', 'Aluminum'],
+      heatingType: 'Conduction (3D Chamber)',
+      tempRange: '400°F - 644°F',
+      battery: 'Internal Li-Ion (USB-C)'
+    },
+    teardown: [
+      {
+        title: '3D Heating Chamber',
+        description: 'The 3D chamber heats from the side walls, not just the bottom, preventing oil from pooling and burning.',
+        material: 'Ceramic / Gold-Plated Contacts',
+        auditRelevance: 'Precision Thermoregulation Control (PTC) via embedded sensors in the chamber walls.',
+        technicalTerm: {
+          term: 'PID Loop',
+          definition: 'A control loop mechanism that uses feedback to maintain a set temperature with high precision.'
+        }
+      },
+      {
+        title: 'Water Filtration Manifold',
+        description: 'The glass attachment provides hydrated particulate filtration, cooling the aerosol and removing heavy particles.',
+        material: 'Hand-Blown Borosilicate Glass',
+        auditRelevance: 'Hydrated filtration reduces respiratory irritation and improves aerosol delivery.',
+        safetyWarning: 'Ensure water level is below the intake hole to prevent damage to the base electronics.'
+      },
+      {
+        title: 'Oculus Carb Cap',
+        description: 'A press-fit silicone and glass cap that creates a directional air stream within the chamber.',
+        material: 'USP Class VI Silicone',
+        auditRelevance: 'Medical-grade silicone ensures no off-gassing in the high-heat zone.',
+        technicalTerm: {
+          term: 'USP Class VI',
+          definition: 'One of the most stringent testing protocols for medical-grade plastics and polymers.'
+        }
       }
     ]
   },
@@ -138,13 +184,13 @@ export const devices: Device[] = [
     name: 'Mighty+',
     brand: 'Storz & Bickel',
     image: 'https://picsum.photos/seed/mighty/400/400',
-    auditScore: 92,
+    auditScore: 95,
     metrics: {
-      vaporPathPurity: 90,
-      thermalStability: 95,
-      bioCompatibility: 94,
-      sanitization: 92,
-      traceability: 98
+      vaporPathPurity: 92,
+      thermalStability: 96,
+      bioCompatibility: 98,
+      sanitization: 94,
+      traceability: 100
     },
     specs: {
       materials: ['PEEK Polymer', 'Stainless Steel', 'Ceramic (Coated)', 'Medical Grade Silicone'],
@@ -157,13 +203,55 @@ export const devices: Device[] = [
         title: 'Cooling Unit Disassembly',
         description: 'The cooling unit features a long labyrinth path to cool vapor, made of heat-resistant PEEK.',
         material: 'PEEK Polymer',
-        auditRelevance: 'Ensures vapor temperature is reduced to safe levels for respiratory comfort.'
+        auditRelevance: 'Ensures vapor temperature is reduced to safe levels for respiratory comfort.',
+        technicalTerm: {
+          term: 'PEEK',
+          definition: 'Polyether ether ketone; a high-performance engineering thermoplastic used in medical implants.'
+        }
       },
       {
         title: 'Ceramic Filling Chamber',
         description: 'The updated Mighty+ features a ceramic-coated chamber for easier cleaning and better flavor purity.',
         material: 'Ceramic Coating',
         auditRelevance: 'Improves sanitization standards and reduces residue buildup.'
+      }
+    ]
+  },
+  {
+    id: 'dynavap-m-plus',
+    name: 'The "M" Plus',
+    brand: 'DynaVap',
+    image: 'https://picsum.photos/seed/dynavap/400/400',
+    auditScore: 92,
+    metrics: {
+      vaporPathPurity: 100,
+      thermalStability: 85,
+      bioCompatibility: 100,
+      sanitization: 100,
+      traceability: 90
+    },
+    specs: {
+      materials: ['Medical Grade Stainless Steel'],
+      heatingType: 'Manual (External Heat Source)',
+      tempRange: 'Variable (User Controlled)',
+      battery: 'None (Battery-Free)'
+    },
+    teardown: [
+      {
+        title: 'Single-Piece Construction',
+        description: 'The device is constructed from 100% medical-grade stainless steel, with no electronics or batteries.',
+        material: '316L Stainless Steel',
+        auditRelevance: 'Zero risk of electronic off-gassing or battery failure. Total material purity.',
+        technicalTerm: {
+          term: 'Bio-Compatibility',
+          definition: 'The quality of not being harmful to living tissue.'
+        }
+      },
+      {
+        title: 'Captive Cap Mechanism',
+        description: 'A temperature-sensitive bimetal cap clicks when the optimal extraction temperature is reached.',
+        material: 'Stainless Steel / Bimetal',
+        auditRelevance: 'Provides a mechanical feedback loop for thermal control without sensors.'
       }
     ]
   }

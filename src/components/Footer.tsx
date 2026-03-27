@@ -36,9 +36,10 @@ export default function Footer() {
           <div>
             <h4 className="text-[10px] font-black uppercase tracking-[0.4em] mb-8 text-stone-400">SANCTUARY</h4>
             <ul className="space-y-5 text-[11px] font-bold text-stone-600 uppercase tracking-[0.2em]">
-              <li><a href="/sanctuary#knowledge" className="hover:text-rose-500 transition-colors">KNOWLEDGE BASE</a></li>
-              <li><a href="/sanctuary#warranty" className="hover:text-rose-500 transition-colors">WARRANTY</a></li>
-              <li><a href="/sanctuary#support" className="hover:text-rose-500 transition-colors">SUPPORT DESK</a></li>
+              <li><a href="/sanctuary" className="hover:text-rose-500 transition-colors">KNOWLEDGE BASE</a></li>
+              <li><a href="/logistics" className="hover:text-rose-500 transition-colors">LOGISTICS</a></li>
+              <li><a href="/warranty" className="hover:text-rose-500 transition-colors">WARRANTY</a></li>
+              <li><a href="/support" className="hover:text-rose-500 transition-colors">SUPPORT DESK</a></li>
             </ul>
           </div>
         </div>

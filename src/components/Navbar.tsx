@@ -22,6 +22,8 @@ export default function Navbar() {
           <a href="https://vapes.pixiespantryshop.com" target="_blank" rel="noopener noreferrer" className="text-[10px] font-black text-stone-400 hover:text-stone-900 uppercase tracking-[0.3em] transition-all">Provisions</a>
           <Link to="/audit" className="text-[10px] font-black text-stone-400 hover:text-stone-900 uppercase tracking-[0.3em] transition-all">The Audit</Link>
           <Link to="/sanctuary" className="text-[10px] font-black text-stone-400 hover:text-stone-900 uppercase tracking-[0.3em] transition-all">Knowledge Base</Link>
+          <Link to="/logistics" className="text-[10px] font-black text-stone-400 hover:text-stone-900 uppercase tracking-[0.3em] transition-all">Logistics</Link>
+          <Link to="/warranty" className="text-[10px] font-black text-stone-400 hover:text-stone-900 uppercase tracking-[0.3em] transition-all">Warranty</Link>
           <Link to="/support" className="text-[10px] font-black text-stone-400 hover:text-stone-900 uppercase tracking-[0.3em] transition-all">Support</Link>
         </div>
 

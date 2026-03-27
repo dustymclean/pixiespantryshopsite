@@ -152,6 +152,93 @@ export default function Audit() {
         </div>
       </section>
 
+      {/* MGV-1 Roster Section */}
+      <section className="py-24 md:py-40 bg-white">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="text-center mb-20">
+            <span className="text-[10px] font-black text-pink-400 uppercase tracking-[0.5em] mb-4 block">THE VERIFIED ROSTER</span>
+            <h3 className="text-4xl md:text-6xl font-serif text-neutral-900 tracking-tight mb-6">The MGV-1 Contenders</h3>
+            <p className="text-neutral-500 font-serif italic text-lg max-w-2xl mx-auto">
+              Out of 1,649 items in our catalog, only 39 distinct lines cleared the data thresholds for clinical verification.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {[
+              {
+                tier: "Tier 1",
+                title: "The Gold Standard",
+                subtitle: "Pre-Certified Compliance",
+                description: "These devices passed immediately because the manufacturers already comply with clinical and pharmaceutical manufacturing standards (ISO 13485, cGMP820).",
+                devices: ["Storz & Bickel: Volcano Hybrid, MIGHTY+, Venty", "DaVinci: IQ2, IQC"],
+                icon: ShieldCheck
+              },
+              {
+                tier: "Tier 2",
+                title: "Materially Pure",
+                subtitle: "Bio-Compatible Airpaths",
+                description: "Verified for negative cytotoxicity. These units utilize totally inert materials like Borosilicate 3.3 and Grade 2 Titanium in the high-heat zones.",
+                devices: ["Arizer: Solo 3, Air SE, ArGo", "Dynavap: The 'M' Plus, Omni"],
+                icon: Microscope
+              },
+              {
+                tier: "Tier 3",
+                title: "Extraction Consoles",
+                subtitle: "Precision e-Rigs",
+                description: "Advanced thermoregulation with thermal runaway protection. These consoles bridge the gap between desktop power and portable safety.",
+                devices: ["Puffco: Peak Pro (V2), Proxy", "Focus V: Carta 2"],
+                icon: Thermometer
+              },
+              {
+                tier: "Tier 4",
+                title: "Botanical Homogenizers",
+                subtitle: "Zero-Shedding Mechanics",
+                description: "Engineered to prevent metallic particulate shedding during the homogenization process. No lead, no zinc, no mystery alloys.",
+                devices: ["Santa Cruz Shredder: 2-Piece, 3-Piece", "Flower Mill: Premium Edition"],
+                icon: Cpu
+              },
+              {
+                tier: "Tier 5",
+                title: "Hydrated Particulate Filters",
+                subtitle: "Clinical Glassware",
+                description: "Borosilicate glass manifolds designed for autoclave sterilization and maximum particulate capture through hydration.",
+                devices: ["MJ Arsenal: Standard Series", "Heir: Water Pipe"],
+                icon: Droplets
+              }
+            ].map((item, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.1 }}
+                className="p-8 rounded-[2rem] border border-pink-50 bg-pink-50/10 hover:border-pink-200 transition-all group"
+              >
+                <div className="flex justify-between items-start mb-6">
+                  <div className="w-12 h-12 bg-white rounded-2xl flex items-center justify-center text-pink-400 shadow-sm group-hover:scale-110 transition-transform">
+                    <item.icon className="w-5 h-5" />
+                  </div>
+                  <span className="text-[10px] font-black text-pink-300 uppercase tracking-widest">{item.tier}</span>
+                </div>
+                <h4 className="text-xl font-bold text-neutral-900 mb-1">{item.title}</h4>
+                <p className="text-[10px] font-black text-pink-500 uppercase tracking-widest mb-4">{item.subtitle}</p>
+                <p className="text-neutral-500 text-sm leading-relaxed mb-6 font-serif italic">
+                  {item.description}
+                </p>
+                <div className="space-y-2">
+                  {item.devices.map((device, j) => (
+                    <div key={j} className="text-[11px] font-bold text-neutral-700 flex items-center gap-2">
+                      <div className="w-1 h-1 bg-pink-300 rounded-full" />
+                      {device}
+                    </div>
+                  ))}
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Verification Matrix Table */}
       <section className="py-24 md:py-40 bg-[#FDFCFD]">
         <div className="max-w-7xl mx-auto px-6">
@@ -251,6 +338,9 @@ export default function Audit() {
                 </p>
                 <p>
                   The Medical-Grade Verification (Level 1) is not just a checklist; it is an active defense system for the human respiratory tract. We exist because "FDA-cleared plastics" are not enough when they are heated to 450°F. We exist because patients deserve to know if they are inhaling Grade 2 Titanium or a mystery alloy sourced from the lowest bidder.
+                </p>
+                <p>
+                  To populate the interactive Audit lab, we pull directly from the MGV-1 Medical Verification Framework. Out of the 1,649 items in the catalog, only 39 distinct lines cleared the data thresholds. These are the specific devices identified as MGV-1 contenders, backed by exact material science justifications.
                 </p>
               </div>
             </div>

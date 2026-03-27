@@ -5,6 +5,9 @@ import Footer from './components/Footer';
 import Home from './pages/Home';
 import Audit from './pages/Audit';
 import Sanctuary from './pages/Sanctuary';
+import Support from './pages/Support';
+import Logistics from './pages/Logistics';
+import Warranty from './pages/Warranty';
 
 function ScrollToTop() {
   const { pathname, hash } = useLocation();
@@ -34,7 +37,9 @@ export default function App() {
             <Route path="/" element={<Home />} />
             <Route path="/audit" element={<Audit />} />
             <Route path="/sanctuary" element={<Sanctuary />} />
-            <Route path="/support" element={<Sanctuary />} />
+            <Route path="/support" element={<Support />} />
+            <Route path="/logistics" element={<Logistics />} />
+            <Route path="/warranty" element={<Warranty />} />
           </Routes>
         </main>
         <Footer />
