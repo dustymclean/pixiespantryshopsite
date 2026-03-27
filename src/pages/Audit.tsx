@@ -163,47 +163,31 @@ export default function Audit() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[
               {
                 tier: "Tier 1",
-                title: "The Gold Standard",
-                subtitle: "Pre-Certified Compliance",
-                description: "These devices passed immediately because the manufacturers already comply with clinical and pharmaceutical manufacturing standards (ISO 13485, cGMP820).",
-                devices: ["Storz & Bickel: Volcano Hybrid, MIGHTY+, Venty", "DaVinci: IQ2, IQC"],
+                title: "Pre-Certified Medical",
+                subtitle: "The Gold Standard",
+                description: "These devices have undergone third-party clinical testing and are currently the only portable units with a TUV-certified medical-grade pedigree.",
+                devices: ["Storz & Bickel: Mighty+, Venty", "Storz & Bickel: Volcano Hybrid"],
                 icon: ShieldCheck
               },
               {
                 tier: "Tier 2",
-                title: "Materially Pure",
-                subtitle: "Bio-Compatible Airpaths",
-                description: "Verified for negative cytotoxicity. These units utilize totally inert materials like Borosilicate 3.3 and Grade 2 Titanium in the high-heat zones.",
-                devices: ["Arizer: Solo 3, Air SE, ArGo", "Dynavap: The 'M' Plus, Omni"],
+                title: "Verified Teardowns",
+                subtitle: "Enthusiast-Grade",
+                description: "These devices have been physically audited by Pixie's Pantry. We have verified the airpath isolation and material purity through destructive testing.",
+                devices: ["Tinymight 2", "Vestratto: Anvil"],
                 icon: Microscope
               },
               {
                 tier: "Tier 3",
-                title: "Extraction Consoles",
-                subtitle: "Precision e-Rigs",
-                description: "Advanced thermoregulation with thermal runaway protection. These consoles bridge the gap between desktop power and portable safety.",
-                devices: ["Puffco: Peak Pro (V2), Proxy", "Focus V: Carta 2"],
+                title: "Analog Purists",
+                subtitle: "Zero-Electronic Risk",
+                description: "These devices utilize zero electronics, eliminating the risk of battery failure or circuit off-gassing. They represent the peak of thermodynamic simplicity.",
+                devices: ["DynaVap: Medical-Grade SS & Titanium", "The Terpcicle / Quartz Caps"],
                 icon: Thermometer
-              },
-              {
-                tier: "Tier 4",
-                title: "Botanical Homogenizers",
-                subtitle: "Zero-Shedding Mechanics",
-                description: "Engineered to prevent metallic particulate shedding during the homogenization process. No lead, no zinc, no mystery alloys.",
-                devices: ["Santa Cruz Shredder: 2-Piece, 3-Piece", "Flower Mill: Premium Edition"],
-                icon: Cpu
-              },
-              {
-                tier: "Tier 5",
-                title: "Hydrated Particulate Filters",
-                subtitle: "Clinical Glassware",
-                description: "Borosilicate glass manifolds designed for autoclave sterilization and maximum particulate capture through hydration.",
-                devices: ["MJ Arsenal: Standard Series", "Heir: Water Pipe"],
-                icon: Droplets
               }
             ].map((item, i) => (
               <motion.div
@@ -260,52 +244,28 @@ export default function Audit() {
                 <tbody className="text-neutral-600 font-serif">
                   {[
                     {
-                      domain: "Vapor Path Composition",
-                      sub: "Chemistry",
-                      standard: "Hermetically isolated airpath ≥ 98% composed of ISO 3585 / Borosilicate 3.3, Grade 2 Titanium, or 316L Stainless Steel.",
+                      domain: "Vapor Path Purity",
+                      sub: "Material Science",
+                      standard: "Isolated airpath; zero contact with electronics, wires, or solder. ≥ 98% composed of Borosilicate 3.3, Grade 2 Titanium, or 316L Stainless Steel.",
                       fail: "FAIL: LEACHATE EXPOSURE - Air path intersection with circuit boards (PCB), lead-bearing solder, or non-food-grade alkaline battery housings."
                     },
                     {
-                      domain: "Thermodynamic Stability",
-                      sub: "Physics",
-                      standard: "Precision Thermoregulation Control (PTC) maintaining ≤ ± 2°F active stability during maximum cubic airflow (> 15L/min).",
-                      fail: "FAIL: THERMAL RUNAWAY - Surface temperatures breaching the 455°F combustion threshold, inducing carbon monoxide or benzene synthesis."
+                      domain: "Thermal Stability",
+                      sub: "Thermodynamics",
+                      standard: "Precision Thermoregulation Control (PTC) with real-time stability of ≤ ± 2°F. Zero overshoot past 451°F.",
+                      fail: "FAIL: COMBUSTION RISK - Temperature fluctuations exceeding ±10°F or lack of thermal isolation between heater and battery."
                     },
                     {
-                      domain: "Molecular Adhesion",
-                      sub: "VOC Mitigation",
-                      standard: "Total elimination of industrial cyanoacrylates or epoxies in high-heat zones. Component seals must utilize USP Class VI friction or compression fitting.",
-                      fail: "FAIL: CHEMICAL OFF-GASSING - Presence of manufacturing residues, flux, or un-vetted adhesives that activate at operational temperatures (> 300°F)."
+                      domain: "Bio-Compatibility",
+                      sub: "Cytotoxicity",
+                      standard: "All gaskets and seals must be USP Class VI Medical Grade Silicone or PTFE. Zero off-gassing at 500°F.",
+                      fail: "FAIL: POLYMER OFF-GASSING - Use of industrial-grade rubber, non-certified plastics, or adhesives in the high-heat zone."
                     },
                     {
-                      domain: "Fracture Mechanics",
-                      sub: "Domain: Structural",
-                      standard: "Polarized light verification of glass annealing uniformity. Coefficient of Linear Thermal Expansion (3.3 × 10⁻⁶ K⁻¹) must be consistent across the manifold.",
-                      fail: "FAIL: PARTICULATE RELEASE - Un-annealed glass with localized stress concentrations susceptible to micro-fracture \"dusting\" during thermal shock cycles."
-                    },
-                    {
-                      domain: "Bio-Security & Hygiene",
-                      sub: "Domain: Biology",
-                      standard: "Autoclave-Compatible Geometry. Surfaces must withstand 250°F steam or 91% ISO immersion without material pitting or oxidative decay.",
-                      fail: "FAIL: BIO-FILM ACCUMULATION - Fixed internal reservoirs or non-removable mouthpieces that trap moisture and botanical debris, creating un-sanitizable pathogen traps."
-                    },
-                    {
-                      domain: "Pneumatic Control",
-                      sub: "Domain: Aerodynamics",
-                      standard: "Verification of standardized airflow resistance (≤ 2.0 inH₂O). Integrated Pressure Regulation Valves to prevent high-velocity aerosol throat irritation.",
-                      fail: "FAIL: RESPIRATORY STRESS - Excessive draw resistance or turbulent flow geometry that induces secondary pulmonary irritation unrelated to the medicine."
-                    },
-                    {
-                      domain: "Logic Redundancy",
-                      sub: "Domain: Safety Systems",
-                      standard: "Dual-layer protection: Software PID loop monitoring paired with a Physical Thermal Fuse (fail-safe) to isolate power during controller failure.",
-                      fail: "FAIL: SYSTEMIC FAILURE - Single-point failure potential where a software bug allows unchecked heater activation during high-current charging or operation."
-                    },
-                    {
-                      domain: "Metallurgical Traceability",
-                      sub: "Domain: Metallurgy",
-                      standard: "Certificate of Conformance (CoC) verifying AISI 316L or ASTM B265 Grade 2 Titanium. Zero zinc, lead, or chromium-plating in aerosol zones.",
-                      fail: "FAIL: HEAVY METAL TOXICITY - Evidence of surface flaking, oxidative pitting, or the use of unidentified \"mystery alloys\" in the heat-exchange manifold."
+                      domain: "Sanitization & Hygiene",
+                      sub: "Clinical Protocol",
+                      standard: "Fully modular geometry allowing for 91% ISO soak or autoclave sterilization. Zero blind reservoirs.",
+                      fail: "FAIL: BIO-ACCUMULATION - Non-removable mouthpieces or internal crevices that trap moisture and organic matter."
                     }
                   ].map((row, i) => (
                     <tr key={i} className="border-b border-neutral-50 hover:bg-neutral-50/30 transition-colors">
@@ -349,77 +309,93 @@ export default function Audit() {
             <div className="space-y-12">
               <ExpandableSection 
                 number="01"
+                title="Giving Life to the MGV-1"
+                content={
+                  <>
+                    <p className="text-neutral-900 font-bold not-italic border-l-2 border-pink-200 pl-6 py-1">
+                      The MGV-1 is not a regulatory body; it is a verification framework. It was born from the realization that while the 'vape' industry was busy chasing clouds and flavors, the medical community was being left with hardware that was, at best, inconsistent and, at worst, dangerous.
+                    </p>
+                    <p>
+                      The MGV-1 (Medical Grade Vaporizer) standard was developed to bridge the gap between consumer electronics and medical devices. We recognized that for many, these devices are not toys—they are essential delivery systems for medicine.
+                    </p>
+                    <p>
+                      By establishing a rigorous set of audit protocols, we provide a clear path for manufacturers to demonstrate their commitment to patient safety and for users to make informed decisions about the hardware they trust with their health.
+                    </p>
+                  </>
+                }
+                layman="This standard was created because the industry was focused on fun instead of safety. We built a system to test and prove which devices are actually safe enough to be used for medicine, so you don't have to guess."
+              />
+
+              <ExpandableSection 
+                number="02"
                 title="Who it Serves"
                 content={
                   <>
                     <p className="text-neutral-900 font-bold not-italic border-l-2 border-pink-200 pl-6 py-1">
-                      The MGV-1 framework is the definitive safety standard for patients across the entire Clinical Therapeutic Spectrum. Our protocol is designed to protect those managing Oncological and Palliative needs, Neuro-Immunological disorders, Refractory Chronic Pain, and Behavioral Health complexities.
-                    </p>
-                    <p>
-                      Living with a chronic or terminal condition is an exhaustive exercise in risk management. Whether you are navigating an autoimmune disorder, oncology care, or refractory chronic pain, your body is already working overtime. You shouldn’t have to spend your limited energy wondering if your delivery hardware is off-gassing industrial glues or leaching heavy metals into your lungs.
+                      The MGV-1 serves the patient who cannot afford to guess if their hardware is leaching heavy metals. It serves the clinician who needs to know that a 380°F setting actually delivers 380°F. It serves the caregiver who is responsible for the safety of another.
                     </p>
                     <p>
                       The MGV-1 protocol is for the person who cannot afford a "minor" impurity. It serves the immuno-compromised, the palliative patient, and those managing neurological or spinal injuries where respiratory inflammation is a major physiological setback.
                     </p>
                   </>
                 }
-                layman="This standard was created specifically for people living with serious, long-term, or life-limiting health conditions who depend on these devices every day. Many patients already have enough to worry about with their health. The MGV-1 removes that uncertainty by holding every device to hospital-grade safety standards."
-              />
-
-              <ExpandableSection 
-                number="02"
-                title="The Path to Legal Standing"
-                content={
-                  <>
-                    <p className="text-neutral-900 font-bold not-italic">Our final goal is the formal recodification of these devices. By adhering to ISO 13485 and HCPCS taxonomies, we are building the case for insurance coverage. We are moving from "vape shops" to "DME Suppliers," ensuring that medical-grade extraction is recognized as a human right.</p>
-                    <p>Right now, the industry is stuck in a legal gray area. High-end hardware is sold as "lifestyle accessories" because most retailers want to avoid the technical and regulatory burden of a clinical classification. This isn't just a labeling issue; it’s a barrier to care.</p>
-                    <div className="space-y-4 not-italic">
-                      <h6 className="text-[10px] font-black text-pink-500 uppercase tracking-widest">The Execution Strategy:</h6>
-                      <ul className="space-y-4 text-sm">
-                        <li className="pl-4 border-l border-neutral-200"><span className="font-bold text-neutral-900">Material Accountability:</span> We require a comprehensive material audit for every device in our clinical silo.</li>
-                        <li className="pl-4 border-l border-neutral-200"><span className="font-bold text-neutral-900">Financial Infrastructure:</span> We are navigating the specialized financial rails that bridge the gap between retail checkouts and pre-tax health dollars.</li>
-                        <li className="pl-4 border-l border-neutral-200"><span className="font-bold text-neutral-900">Clinical Documentation:</span> By pairing engineering teardowns with verified medical necessity, we are providing the "technical rebuttal" that insurance carriers require.</li>
-                      </ul>
-                    </div>
-                  </>
-                }
-                layman="Right now, these devices are often treated like recreational toys, which means patients usually have to pay the full price themselves. Our long-term goal is to change that. We are working to get these devices officially recognized by insurance companies as legitimate medical equipment."
+                layman="This standard was created for people with serious health conditions who depend on these devices. It ensures that the tools you use to take your medicine are as safe as the medicine itself, protecting you from hidden dangers like heavy metals or toxic fumes."
               />
 
               <ExpandableSection 
                 number="03"
-                title="The Case for Harm Reduction Economics"
+                title="The Path to Legal Standing"
                 content={
                   <>
-                    <p>The current healthcare model is reactive. It waits for respiratory damage to happen and then bills for the treatment. We are advocating for a proactive shift. By reclassifying precision thermal extraction as <span className="not-italic font-bold text-neutral-900">Respiratory Harm Reduction</span>, we are addressing the root of the risk: <span className="not-italic font-bold text-neutral-900">Combustion</span>.</p>
-                    <p>Standard "smoke shop" hardware is often built with materials that begin to degrade at the very temperatures required for effective titration. When a patient uses sub-standard hardware, they aren't just getting a poor experience; they are potentially inhaling heavy metal particulates and polymer off-gassing.</p>
+                    <p className="text-neutral-900 font-bold not-italic">We are working to bridge the gap between "Headshop Hardware" and "Durable Medical Equipment (DME)."</p>
+                    <p>By standardizing the MGV-1, we are creating the documentation necessary for these devices to eventually be covered by health insurance and prescribed by doctors. We are moving from "vape shops" to "DME Suppliers."</p>
+                    <div className="space-y-4 not-italic">
+                      <h6 className="text-[10px] font-black text-pink-500 uppercase tracking-widest">The Execution Strategy:</h6>
+                      <ul className="space-y-4 text-sm">
+                        <li className="pl-4 border-l border-neutral-200"><span className="font-bold text-neutral-900">Clinical Classification:</span> Standardizing hardware specs into medical data.</li>
+                        <li className="pl-4 border-l border-neutral-200"><span className="font-bold text-neutral-900">Insurance Alignment:</span> Building the case for HCPCS-style coding and coverage.</li>
+                        <li className="pl-4 border-l border-neutral-200"><span className="font-bold text-neutral-900">Regulatory Rebuttal:</span> Providing the technical documentation needed to challenge current restrictions.</li>
+                      </ul>
+                    </div>
                   </>
                 }
-                layman="Healthcare today usually waits until someone gets sick and then pays to treat the damage. We believe it makes more sense to prevent harm in the first place. Investing in safe hardware now is far cheaper than paying for the medical consequences of unsafe hardware years down the road."
+                layman="Right now, these devices are often seen as toys. We are working to prove they are serious medical tools so that one day, your doctor can prescribe them and your insurance might help pay for them."
               />
 
               <ExpandableSection 
                 number="04"
-                title="Technical Documentation & Traceability"
+                title="The Case for Harm Reduction Economics"
                 content={
                   <>
-                    <p>Every device that clears the MGV-1 audit is issued a comprehensive <span className="not-italic font-bold text-neutral-900">Clinical Data Pack</span>. We don’t expect a patient or a healthcare provider to just "take our word for it." This packet includes the full engineering teardown report, categorized Material Safety Data Sheets (MSDS), and the specific HCPCS billing alignment for that unit.</p>
-                    <p>A central component of this documentation is the <span className="not-italic font-bold text-neutral-900">Material Bill of Lading (MBL)</span>. In the medical industry, if you can't prove what a device is made of, it doesn't exist. We mandate that manufacturers provide a line-item account of every material that touches the airpath.</p>
+                    <p>A $400 vaporizer that lasts 10 years and protects your lungs is significantly cheaper than a $50 "gas station" vape that fails in six months and contributes to respiratory issues. We view the MGV-1 as a long-term investment in your biological capital.</p>
+                    <p>Standard hardware is often built with materials that degrade at operational temperatures. When a patient uses sub-standard hardware, they risk inhaling heavy metal particulates and polymer off-gassing.</p>
                   </>
                 }
-                layman="We don’t just say “trust us” when it comes to safety. Every device we approve comes with complete, detailed paperwork that proves exactly what materials were used and how the device was built. This level of transparency allows doctors and patients to have real confidence."
+                layman="Buying one high-quality, safe device is a better investment for your wallet and your health than buying cheap, disposable ones that could hurt your lungs and need to be replaced constantly."
               />
 
               <ExpandableSection 
                 number="05"
+                title="Technical Documentation & Traceability"
+                content={
+                  <>
+                    <p>Every MGV-1 device comes with a "Birth Certificate" in our database. We track batch numbers, material certifications, and teardown results. If a manufacturer changes a gasket material to a cheaper, non-compliant silicone, they lose their MGV-1 status immediately.</p>
+                    <p>A central component is the <span className="not-italic font-bold text-neutral-900">Material Bill of Lading (MBL)</span>. We mandate that manufacturers provide a line-item account of every material that touches the airpath.</p>
+                  </>
+                }
+                layman="We keep a detailed 'birth certificate' for every approved device. If a company starts using cheaper, unsafe parts, we find out and remove them from our list immediately. We know exactly what every part is made of."
+              />
+
+              <ExpandableSection 
+                number="06"
                 title="Quality Assurance & Continuous Audit"
                 content={
                   <>
-                    <p>The MGV-1 is not a one-and-done certification. As materials like PEEK polymers and ceramic binders evolve, our thresholds adjust. We are constantly monitoring the metallurgical leaching data and thermal stability reports from our production nodes. If a manufacturer changes their material source to a lower-grade alloy, they lose their MGV-1 status instantly.</p>
-                    <p>Our continuous audit also mandates <span className="not-italic font-bold text-neutral-900">Autoclave-Compatible Geometry</span>. A medical tool is a liability if it cannot be thoroughly sanitized. To pass our audit, a device must be capable of being fully sanitized through high-concentration isopropyl submersion or high-heat steam sterilization.</p>
+                    <p>The Audit is never finished. As new devices enter the market, they are subjected to the same rigorous teardown. We don't take the manufacturer's word for it; we open the device, inspect the solder, and test the airpath under load.</p>
+                    <p>Our continuous audit also mandates <span className="not-italic font-bold text-neutral-900">Autoclave-Compatible Geometry</span>. If a device has a 'hidden' reservoir or a non-removable mouthpiece that traps moisture, it is an immediate clinical fail.</p>
                   </>
                 }
-                layman="Safety isn’t a one-time check — it’s an ongoing commitment. We keep watching the manufacturers to make sure they don’t quietly switch to cheaper or unsafe materials later. We also require that every device can be thoroughly cleaned and sterilized (like medical equipment in a hospital)."
+                layman="We never stop checking. We take devices apart ourselves to make sure they are built right. We also make sure they can be cleaned perfectly so no germs or mold can grow inside them."
               />
             </div>
 
