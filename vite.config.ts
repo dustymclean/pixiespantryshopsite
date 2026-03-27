@@ -4,8 +4,6 @@ import path from 'path';
 import { defineConfig } from 'vite';
 
 export default defineConfig({
-  // This tells Vite to build all assets with relative paths
-  base: './',
   plugins: [react(), tailwindcss()],
   resolve: {
     alias: {
