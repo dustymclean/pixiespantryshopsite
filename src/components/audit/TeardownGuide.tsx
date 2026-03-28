@@ -1,12 +1,21 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { ArrowLeft, ArrowRight, Info, AlertTriangle, X } from 'lucide-react';
 import { Device, devices } from '../../data/devices';
 
-export default function TeardownGuide() {
-  const [selectedDevice, setSelectedDevice] = useState<Device | null>(null);
+interface TeardownGuideProps {
+  selectedDevice: Device | null;
+  setSelectedDevice: (device: Device | null) => void;
+}
+
+export default function TeardownGuide({ selectedDevice, setSelectedDevice }: TeardownGuideProps) {
   const [currentStep, setCurrentStep] = useState(0);
   const [showTerm, setShowTerm] = useState(false);
+
+  useEffect(() => {
+    setCurrentStep(0);
+    setShowTerm(false);
+  }, [selectedDevice?.id]);
 
   const handleNext = () => {
     if (selectedDevice && currentStep < selectedDevice.teardown.length - 1) {

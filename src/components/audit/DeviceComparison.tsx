@@ -3,9 +3,12 @@ import { motion, AnimatePresence } from 'motion/react';
 import { Plus, X, Check, AlertCircle, Info } from 'lucide-react';
 import { Device, devices } from '../../data/devices';
 
-export default function DeviceComparison() {
-  const [selectedIds, setSelectedIds] = useState<string[]>([]);
+interface DeviceComparisonProps {
+  selectedIds: string[];
+  setSelectedIds: (ids: string[]) => void;
+}
 
+export default function DeviceComparison({ selectedIds, setSelectedIds }: DeviceComparisonProps) {
   const toggleDevice = (id: string) => {
     if (selectedIds.includes(id)) {
       setSelectedIds(selectedIds.filter(i => i !== id));

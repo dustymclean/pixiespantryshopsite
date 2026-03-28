@@ -1,0 +1,818 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Audit | Pixie's Pantry | Clinical Hardware Analysis</title>
+    <meta name="description" content="Our rigorous clinical hardware auditing process. Tearing down devices to verify material safety, thermal stability, and bio-compatibility.">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+                        serif: ['Playfair Display', 'ui-serif', 'Georgia', 'serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <style>
+        .gold-text {
+            background: linear-gradient(to right, #d4af37, #f9e29c, #d4af37);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .hero-glow {
+            background: radial-gradient(circle at top right, rgba(255, 228, 230, 0.4), transparent 50%),
+                        radial-gradient(circle at bottom left, rgba(255, 228, 230, 0.3), transparent 50%);
+        }
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        .expandable-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-out;
+        }
+        .expandable-content.open {
+            max-height: 2000px;
+        }
+        .rotate-icon {
+            transition: transform 0.3s ease;
+        }
+        .rotate-icon.open {
+            transform: rotate(180deg);
+        }
+    </style>
+</head>
+<body class="bg-white text-stone-900 antialiased">
+
+    <!-- Navbar -->
+    <nav class="fixed top-0 w-full z-[100] bg-white/80 backdrop-blur-xl border-b border-stone-100 font-sans">
+        <div class="max-w-7xl mx-auto px-6 h-24 flex justify-between items-center">
+            <a href="index.html" class="flex items-center gap-3 group">
+                <img src="https://i.imgur.com/vmJPD4c.png" alt="Logo" class="h-12 w-auto object-contain group-hover:opacity-80 transition-opacity">
+                <h1 class="text-2xl font-serif tracking-tight flex items-center leading-none">
+                    <span class="text-stone-900 font-bold">Pixie's</span>
+                    <span class="text-stone-400 font-light italic ml-2 group-hover:text-stone-600 transition-colors">Pantry</span>
+                </h1>
+            </a>
+
+            <div class="hidden lg:flex items-center gap-8">
+                <a href="https://vapes.pixiespantryshop.com" target="_blank" class="text-[10px] font-black text-stone-400 hover:text-stone-900 uppercase tracking-[0.3em] transition-all">Provisions</a>
+                <a href="audit.html" class="text-[10px] font-black text-stone-900 uppercase tracking-[0.3em] transition-all">The Audit</a>
+                <a href="sanctuary.html" class="text-[10px] font-black text-stone-400 hover:text-stone-900 uppercase tracking-[0.3em] transition-all">Knowledge Base</a>
+                <a href="logistics.html" class="text-[10px] font-black text-stone-400 hover:text-stone-900 uppercase tracking-[0.3em] transition-all">Logistics</a>
+                <a href="warranty.html" class="text-[10px] font-black text-stone-400 hover:text-stone-900 uppercase tracking-[0.3em] transition-all">Warranty</a>
+                <a href="support.html" class="text-[10px] font-black text-stone-400 hover:text-stone-900 uppercase tracking-[0.3em] transition-all">Support</a>
+            </div>
+
+            <div class="flex items-center gap-4">
+                <a href="https://vapes.pixiespantryshop.com/" target="_blank" class="relative group flex items-center gap-3 bg-stone-900 hover:bg-black px-6 py-2.5 rounded-full transition-all duration-300 shadow-lg shadow-stone-200">
+                    <i data-lucide="shopping-bag" class="w-4 h-4 text-rose-300"></i>
+                    <span class="text-[10px] font-black text-white uppercase tracking-widest">Shop Provisions</span>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="pt-48 md:pt-64 pb-24 md:pb-32 px-6 relative overflow-hidden hero-glow">
+        <div class="max-w-6xl mx-auto text-center">
+            <div class="inline-flex items-center gap-3 px-6 py-2 bg-white border border-stone-200 rounded-full shadow-[0_2px_15px_-5px_rgba(0,0,0,0.05)] mb-10">
+                <span class="text-[10px] font-black text-stone-600 uppercase tracking-[0.4em]">CLINICAL HARDWARE AUDIT</span>
+            </div>
+
+            <h2 class="text-6xl md:text-8xl lg:text-[9rem] font-serif tracking-tighter text-stone-900 mb-10 leading-[0.9] md:leading-[0.85]">
+                The <span class="italic text-stone-500 font-medium pr-2">Audit.</span><br class="hidden md:block">
+                <span class="gold-text">Verified Integrity.</span>
+            </h2>
+
+            <p class="max-w-3xl mx-auto text-stone-500 text-lg md:text-xl font-light leading-relaxed mb-14 font-serif italic antialiased px-4">
+                We don't just review hardware; we audit it for clinical safety. Every device that enters our registry undergoes a complete teardown to verify material purity, thermal stability, and long-term bio-compatibility. If it fails our matrix, it never touches our shelf.
+            </p>
+        </div>
+    </section>
+
+    <!-- Interactive Lab Section -->
+    <section class="py-24 md:py-32 bg-stone-50 border-y border-stone-100">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex flex-col lg:flex-row justify-between items-start lg:items-end mb-20 gap-10">
+                <div class="max-w-2xl">
+                    <span class="text-[10px] font-black text-stone-400 uppercase tracking-[0.5em] mb-6 block">INTERACTIVE LAB</span>
+                    <h3 class="text-4xl md:text-5xl font-serif text-stone-900 tracking-tight leading-tight">
+                        Hardware Teardown &<br class="hidden md:block">Clinical Comparison
+                    </h3>
+                </div>
+                <div class="max-w-md text-stone-500 font-serif italic leading-relaxed text-lg border-l-2 border-stone-200 pl-6">
+                    "Explore the internal engineering of verified devices. We expose the components that marketing departments hide."
+                </div>
+            </div>
+
+            <!-- Teardown Guide -->
+            <div id="teardown-guide" class="bg-white rounded-[2rem] md:rounded-[3rem] border border-stone-200 overflow-hidden shadow-2xl shadow-stone-200/50 mb-12">
+                <div class="p-8 md:p-12 border-b border-stone-100 flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
+                    <div>
+                        <h4 class="text-2xl font-serif text-stone-900 mb-2">Virtual Teardown</h4>
+                        <p class="text-stone-500 text-sm font-serif italic">Select a device to begin the clinical inspection.</p>
+                    </div>
+                    <div class="flex flex-wrap gap-2" id="device-selector">
+                        <!-- Device buttons will be injected here -->
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-2 min-h-[600px]">
+                    <!-- Image Side -->
+                    <div class="bg-stone-50 p-12 flex items-center justify-center relative overflow-hidden">
+                        <div class="absolute inset-0 opacity-[0.03] pointer-events-none" style="background-image: radial-gradient(#000 1px, transparent 1px); background-size: 20px 20px;"></div>
+                        <img id="teardown-image" src="" alt="Device" class="max-w-full h-auto object-contain relative z-10 transition-all duration-700">
+                        
+                        <!-- Step Navigation -->
+                        <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex items-center gap-4 bg-white/80 backdrop-blur-md px-6 py-3 rounded-full border border-stone-200 shadow-lg z-20">
+                            <button onclick="prevStep()" class="p-2 hover:bg-stone-100 rounded-full transition-colors"><i data-lucide="chevron-left" class="w-5 h-5"></i></button>
+                            <div class="flex gap-2" id="step-dots">
+                                <!-- Dots will be injected here -->
+                            </div>
+                            <button onclick="nextStep()" class="p-2 hover:bg-stone-100 rounded-full transition-colors"><i data-lucide="chevron-right" class="w-5 h-5"></i></button>
+                        </div>
+                    </div>
+
+                    <!-- Content Side -->
+                    <div class="p-8 md:p-16 flex flex-col justify-center">
+                        <div id="teardown-content" class="space-y-8">
+                            <div>
+                                <span class="text-[10px] font-black text-stone-400 uppercase tracking-[0.4em] mb-4 block" id="step-number">STEP 01 // INTERNAL CORE</span>
+                                <h5 class="text-3xl md:text-4xl font-serif text-stone-900 tracking-tight leading-tight mb-6" id="step-title">Medical-Grade Air Pump</h5>
+                                <p class="text-stone-600 text-lg leading-relaxed font-serif italic" id="step-description">
+                                    The internal diaphragm pump is built to medical standards, ensuring a constant, filtered air stream for balloon inflation.
+                                </p>
+                            </div>
+
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 pt-8 border-t border-stone-100">
+                                <div>
+                                    <h6 class="text-[10px] font-black text-stone-900 uppercase tracking-widest mb-3">MATERIAL ANALYSIS</h6>
+                                    <p class="text-stone-500 text-sm" id="step-material">High-Performance Elastomers</p>
+                                </div>
+                                <div>
+                                    <h6 class="text-[10px] font-black text-stone-900 uppercase tracking-widest mb-3">AUDIT RELEVANCE</h6>
+                                    <p class="text-stone-500 text-sm" id="step-relevance">ISO 13485 compliance ensures the air source is free from mechanical lubricants.</p>
+                                </div>
+                            </div>
+
+                            <div id="step-technical" class="bg-rose-50/50 p-6 rounded-2xl border border-rose-100">
+                                <div class="flex items-start gap-4">
+                                    <i data-lucide="book-open" class="w-5 h-5 text-rose-400 mt-1"></i>
+                                    <div>
+                                        <h6 class="text-[10px] font-black text-rose-900 uppercase tracking-widest mb-2" id="tech-term">ISO 13485</h6>
+                                        <p class="text-rose-800/70 text-xs leading-relaxed" id="tech-definition">An international standard that outlines the requirements for a quality management system specific to the medical devices industry.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Device Comparison -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="bg-white rounded-[2rem] border border-stone-200 p-8 md:p-12">
+                    <h4 class="text-2xl font-serif text-stone-900 mb-8">Clinical Comparison</h4>
+                    <div class="space-y-6">
+                        <div class="flex flex-col gap-4">
+                            <label class="text-[10px] font-black text-stone-400 uppercase tracking-widest">DEVICE A</label>
+                            <select id="compare-a" onchange="updateComparison()" class="w-full bg-stone-50 border border-stone-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-rose-300 transition-colors">
+                                <!-- Options will be injected here -->
+                            </select>
+                        </div>
+                        <div class="flex flex-col gap-4">
+                            <label class="text-[10px] font-black text-stone-400 uppercase tracking-widest">DEVICE B</label>
+                            <select id="compare-b" onchange="updateComparison()" class="w-full bg-stone-50 border border-stone-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-rose-300 transition-colors">
+                                <!-- Options will be injected here -->
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="mt-12 space-y-8" id="comparison-metrics">
+                        <!-- Metrics will be injected here -->
+                    </div>
+                </div>
+
+                <div class="bg-stone-900 rounded-[2rem] p-8 md:p-12 text-white flex flex-col justify-center">
+                    <div class="mb-12">
+                        <span class="text-[10px] font-black text-rose-400 uppercase tracking-[0.4em] mb-6 block">AUDIT ROSTER</span>
+                        <h4 class="text-3xl md:text-4xl font-serif tracking-tight leading-tight mb-6">Verified Device Classification</h4>
+                        <p class="text-stone-400 font-serif italic text-lg leading-relaxed">
+                            We categorize hardware into three tiers of clinical reliability.
+                        </p>
+                    </div>
+
+                    <div class="space-y-8">
+                        <div class="flex items-start gap-6 group">
+                            <div class="w-12 h-12 rounded-full border border-rose-900/50 flex items-center justify-center text-rose-400 font-serif italic text-xl group-hover:bg-rose-900/20 transition-all">I</div>
+                            <div>
+                                <h5 class="text-lg font-serif mb-1">Tier 1: Clinical Gold Standard</h5>
+                                <p class="text-stone-500 text-sm">Devices with ISO 13485 certification and 100% isolated airpaths.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-6 group">
+                            <div class="w-12 h-12 rounded-full border border-rose-900/50 flex items-center justify-center text-rose-400 font-serif italic text-xl group-hover:bg-rose-900/20 transition-all">II</div>
+                            <div>
+                                <h5 class="text-lg font-serif mb-1">Tier 2: High-Fidelity Consumer</h5>
+                                <p class="text-stone-500 text-sm">Exceptional material safety and thermal stability for daily therapy.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-6 group">
+                            <div class="w-12 h-12 rounded-full border border-rose-900/50 flex items-center justify-center text-rose-400 font-serif italic text-xl group-hover:bg-rose-900/20 transition-all">III</div>
+                            <div>
+                                <h5 class="text-lg font-serif mb-1">Tier 3: Specialized Extraction</h5>
+                                <p class="text-stone-500 text-sm">Manual or niche devices with verified bio-compatible paths.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Methodology Deep Dive -->
+    <section class="py-24 md:py-40 max-w-7xl mx-auto px-6">
+        <div class="text-center mb-24">
+            <span class="text-[10px] font-black text-stone-400 uppercase tracking-[0.5em] mb-6 block">THE METHODOLOGY</span>
+            <h3 class="text-4xl md:text-6xl font-serif text-stone-900 tracking-tight leading-tight mb-8">Four Pillars of Hardware Integrity</h3>
+            <p class="max-w-2xl mx-auto text-stone-500 font-serif italic text-lg leading-relaxed">
+                Our auditing process is binary. A device either meets the standard, or it is excluded from our registry.
+            </p>
+        </div>
+
+        <div class="space-y-6">
+            <!-- Pillar 1 -->
+            <div class="border border-stone-200 rounded-[2rem] overflow-hidden">
+                <button onclick="toggleExpandable(this)" class="w-full px-8 md:px-12 py-10 flex justify-between items-center bg-white hover:bg-stone-50 transition-colors text-left">
+                    <div class="flex items-center gap-8">
+                        <span class="text-4xl font-serif italic text-stone-200">01</span>
+                        <h4 class="text-2xl md:text-3xl font-serif text-stone-900">Vapor Path Purity (TTI)</h4>
+                    </div>
+                    <i data-lucide="chevron-down" class="w-6 h-6 text-stone-400 rotate-icon"></i>
+                </button>
+                <div class="expandable-content">
+                    <div class="px-8 md:px-12 pb-12 pt-4 grid grid-cols-1 lg:grid-cols-2 gap-12">
+                        <div class="space-y-6">
+                            <p class="text-stone-600 font-serif italic text-lg leading-relaxed">
+                                Total Thermal Isolation (TTI) is the requirement that inhaled air never comes into contact with electronics, adhesives, or non-certified polymers.
+                            </p>
+                            <div class="space-y-4">
+                                <div class="flex items-start gap-4">
+                                    <div class="w-1.5 h-1.5 rounded-full bg-rose-400 mt-2"></div>
+                                    <p class="text-stone-500 text-sm"><strong class="text-stone-900">The Standard:</strong> Airpath must be ≥ 98% composed of Borosilicate, Ceramic, 316L Stainless, Grade 2+ Titanium, or PEEK.</p>
+                                </div>
+                                <div class="flex items-start gap-4">
+                                    <div class="w-1.5 h-1.5 rounded-full bg-rose-400 mt-2"></div>
+                                    <p class="text-stone-500 text-sm"><strong class="text-stone-900">Failure Criteria:</strong> Any presence of internal glue, exposed circuit boards, or non-medical grade plastics in the heat zone.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bg-stone-50 p-8 rounded-2xl border border-stone-100">
+                            <h5 class="text-[10px] font-black text-stone-900 uppercase tracking-widest mb-6">WHY IT MATTERS</h5>
+                            <p class="text-stone-500 text-sm leading-relaxed mb-6">
+                                When hardware heats up, cheap materials undergo "off-gassing"—releasing volatile organic compounds (VOCs) directly into the aerosol. By mandating TTI, we ensure that the only thing you are inhaling is the intended plant profile, free from manufacturing byproducts.
+                            </p>
+                            <div class="flex items-center gap-3 text-rose-600">
+                                <i data-lucide="shield-check" class="w-5 h-5"></i>
+                                <span class="text-[10px] font-bold uppercase tracking-widest">VERIFIED BY TEARDOWN</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pillar 2 -->
+            <div class="border border-stone-200 rounded-[2rem] overflow-hidden">
+                <button onclick="toggleExpandable(this)" class="w-full px-8 md:px-12 py-10 flex justify-between items-center bg-white hover:bg-stone-50 transition-colors text-left">
+                    <div class="flex items-center gap-8">
+                        <span class="text-4xl font-serif italic text-stone-200">02</span>
+                        <h4 class="text-2xl md:text-3xl font-serif text-stone-900">Thermal Stability (PTC)</h4>
+                    </div>
+                    <i data-lucide="chevron-down" class="w-6 h-6 text-stone-400 rotate-icon"></i>
+                </button>
+                <div class="expandable-content">
+                    <div class="px-8 md:px-12 pb-12 pt-4 grid grid-cols-1 lg:grid-cols-2 gap-12">
+                        <div class="space-y-6">
+                            <p class="text-stone-600 font-serif italic text-lg leading-relaxed">
+                                Precision Thermoregulation Control (PTC) ensures that the device maintains a consistent temperature during active inhalation.
+                            </p>
+                            <div class="space-y-4">
+                                <div class="flex items-start gap-4">
+                                    <div class="w-1.5 h-1.5 rounded-full bg-rose-400 mt-2"></div>
+                                    <p class="text-stone-500 text-sm"><strong class="text-stone-900">The Standard:</strong> Real-time temperature fluctuations must remain ≤ ± 2°F during active draw.</p>
+                                </div>
+                                <div class="flex items-start gap-4">
+                                    <div class="w-1.5 h-1.5 rounded-full bg-rose-400 mt-2"></div>
+                                    <p class="text-stone-500 text-sm"><strong class="text-stone-900">Failure Criteria:</strong> Thermal crash during draw or overheating that breaches the 455°F combustion threshold.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bg-stone-50 p-8 rounded-2xl border border-stone-100">
+                            <h5 class="text-[10px] font-black text-stone-900 uppercase tracking-widest mb-6">WHY IT MATTERS</h5>
+                            <p class="text-stone-500 text-sm leading-relaxed mb-6">
+                                Medical efficacy relies on consistent decarboxylation. If a heater cannot maintain its set point during a draw, the aerosol profile changes, leading to uneven dosing and potential respiratory irritation from combustion byproducts.
+                            </p>
+                            <div class="flex items-center gap-3 text-rose-600">
+                                <i data-lucide="thermometer" class="w-5 h-5"></i>
+                                <span class="text-[10px] font-bold uppercase tracking-widest">VERIFIED BY THERMOCOUPLE</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pillar 3 -->
+            <div class="border border-stone-200 rounded-[2rem] overflow-hidden">
+                <button onclick="toggleExpandable(this)" class="w-full px-8 md:px-12 py-10 flex justify-between items-center bg-white hover:bg-stone-50 transition-colors text-left">
+                    <div class="flex items-center gap-8">
+                        <span class="text-4xl font-serif italic text-stone-200">03</span>
+                        <h4 class="text-2xl md:text-3xl font-serif text-stone-900">Bio-Compatibility (SGC)</h4>
+                    </div>
+                    <i data-lucide="chevron-down" class="w-6 h-6 text-stone-400 rotate-icon"></i>
+                </button>
+                <div class="expandable-content">
+                    <div class="px-8 md:px-12 pb-12 pt-4 grid grid-cols-1 lg:grid-cols-2 gap-12">
+                        <div class="space-y-6">
+                            <p class="text-stone-600 font-serif italic text-lg leading-relaxed">
+                                Surgical Grade Compliance (SGC) mandates that all contact surfaces meet international standards for long-term safety.
+                            </p>
+                            <div class="space-y-4">
+                                <div class="flex items-start gap-4">
+                                    <div class="w-1.5 h-1.5 rounded-full bg-rose-400 mt-2"></div>
+                                    <p class="text-stone-500 text-sm"><strong class="text-stone-900">The Standard:</strong> Materials in contact with plant matter or mucosa must be ISO 10993 or USP Class VI compliant.</p>
+                                </div>
+                                <div class="flex items-start gap-4">
+                                    <div class="w-1.5 h-1.5 rounded-full bg-rose-400 mt-2"></div>
+                                    <p class="text-stone-500 text-sm"><strong class="text-stone-900">Failure Criteria:</strong> Use of industrial-grade metals, non-certified silicone, or reactive coatings.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bg-stone-50 p-8 rounded-2xl border border-stone-100">
+                            <h5 class="text-[10px] font-black text-stone-900 uppercase tracking-widest mb-6">WHY IT MATTERS</h5>
+                            <p class="text-stone-500 text-sm leading-relaxed mb-6">
+                                Chronic exposure to non-biocompatible materials can lead to systemic toxicity. We ensure that every surface touching your plant or your body is as safe as a surgical instrument.
+                            </p>
+                            <div class="flex items-center gap-3 text-rose-600">
+                                <i data-lucide="layers" class="w-5 h-5"></i>
+                                <span class="text-[10px] font-bold uppercase tracking-widest">VERIFIED BY MATERIAL CERT</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pillar 4 -->
+            <div class="border border-stone-200 rounded-[2rem] overflow-hidden">
+                <button onclick="toggleExpandable(this)" class="w-full px-8 md:px-12 py-10 flex justify-between items-center bg-white hover:bg-stone-50 transition-colors text-left">
+                    <div class="flex items-center gap-8">
+                        <span class="text-4xl font-serif italic text-stone-200">04</span>
+                        <h4 class="text-2xl md:text-3xl font-serif text-stone-900">Sanitization & Hygiene</h4>
+                    </div>
+                    <i data-lucide="chevron-down" class="w-6 h-6 text-stone-400 rotate-icon"></i>
+                </button>
+                <div class="expandable-content">
+                    <div class="px-8 md:px-12 pb-12 pt-4 grid grid-cols-1 lg:grid-cols-2 gap-12">
+                        <div class="space-y-6">
+                            <p class="text-stone-600 font-serif italic text-lg leading-relaxed">
+                                For a device to be truly medical-grade, it must be capable of being fully sanitized without degradation.
+                            </p>
+                            <div class="space-y-4">
+                                <div class="flex items-start gap-4">
+                                    <div class="w-1.5 h-1.5 rounded-full bg-rose-400 mt-2"></div>
+                                    <p class="text-stone-500 text-sm"><strong class="text-stone-900">The Standard:</strong> Device must be ≥ 90% submersible in 91% ISO or withstand 250°F steam sterilization.</p>
+                                </div>
+                                <div class="flex items-start gap-4">
+                                    <div class="w-1.5 h-1.5 rounded-full bg-rose-400 mt-2"></div>
+                                    <p class="text-stone-500 text-sm"><strong class="text-stone-900">Failure Criteria:</strong> Non-removable vapor paths, porous materials that trap bacteria, or warping under heat.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bg-stone-50 p-8 rounded-2xl border border-stone-100">
+                            <h5 class="text-[10px] font-black text-stone-900 uppercase tracking-widest mb-6">WHY IT MATTERS</h5>
+                            <p class="text-stone-500 text-sm leading-relaxed mb-6">
+                                Bio-film accumulation is a major risk in long-term therapy. If a device cannot be returned to a "factory clean" state easily, it poses a long-term respiratory health risk.
+                            </p>
+                            <div class="flex items-center gap-3 text-rose-600">
+                                <i data-lucide="droplets" class="w-5 h-5"></i>
+                                <span class="text-[10px] font-bold uppercase tracking-widest">VERIFIED BY CLEANING TEST</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Clinical Bridge Section -->
+    <section class="py-24 md:py-40 bg-stone-950 text-white relative overflow-hidden">
+        <div class="absolute top-0 right-0 w-[600px] h-[600px] bg-rose-900/10 rounded-full blur-[120px]"></div>
+        <div class="max-w-7xl mx-auto px-6 relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+                <div>
+                    <span class="text-[10px] font-black text-rose-400 uppercase tracking-[0.5em] mb-8 block">THE CLINICAL BRIDGE</span>
+                    <h3 class="text-4xl md:text-6xl font-serif tracking-tight leading-tight mb-10">From Consumer Tech to Medical Device.</h3>
+                    <p class="text-stone-400 font-serif italic text-xl leading-relaxed mb-12">
+                        We are bridging the gap between "boutique hardware" and "durable medical equipment." Our goal is to provide the data necessary for healthcare providers to prescribe these units with confidence.
+                    </p>
+                    
+                    <div class="space-y-8">
+                        <div class="flex items-start gap-6">
+                            <div class="w-12 h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center shrink-0">
+                                <i data-lucide="file-text" class="w-6 h-6 text-rose-400"></i>
+                            </div>
+                            <div>
+                                <h5 class="text-lg font-serif mb-2">HCPCS Reclassification</h5>
+                                <p class="text-stone-500 text-sm">Mapping hardware to existing medical coding for future insurance reimbursement.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-6">
+                            <div class="w-12 h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center shrink-0">
+                                <i data-lucide="activity" class="w-6 h-6 text-rose-400"></i>
+                            </div>
+                            <div>
+                                <h5 class="text-lg font-serif mb-2">Titrated Delivery Data</h5>
+                                <p class="text-stone-500 text-sm">Verifying that hardware can deliver precise, repeatable aerosol dosages for clinical study.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white/5 border border-white/10 rounded-[3rem] p-12 backdrop-blur-sm">
+                    <h4 class="text-2xl font-serif mb-8 text-rose-100">Lexicon Reclassification</h4>
+                    <div class="space-y-6">
+                        <div class="p-6 rounded-2xl bg-white/5 border border-white/5">
+                            <span class="text-[10px] font-black text-stone-500 uppercase tracking-widest block mb-2">CONSUMER TERM</span>
+                            <p class="text-lg font-serif line-through text-stone-600 mb-4">"Vaporizer"</p>
+                            <span class="text-[10px] font-black text-rose-400 uppercase tracking-widest block mb-2">CLINICAL TERM</span>
+                            <p class="text-xl font-serif text-white">Precision Thermal Extraction Unit</p>
+                        </div>
+                        <div class="p-6 rounded-2xl bg-white/5 border border-white/5">
+                            <span class="text-[10px] font-black text-stone-500 uppercase tracking-widest block mb-2">CONSUMER TERM</span>
+                            <p class="text-lg font-serif line-through text-stone-600 mb-4">"Hitting it"</p>
+                            <span class="text-[10px] font-black text-rose-400 uppercase tracking-widest block mb-2">CLINICAL TERM</span>
+                            <p class="text-xl font-serif text-white">Titrated Aerosol Inhalation</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-[#FAFAFA] pt-32 pb-16 px-6 border-t border-stone-200 relative overflow-hidden text-left">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-20 mb-24">
+            
+            <div class="lg:col-span-5 space-y-10">
+                <div class="flex items-center gap-3">
+                    <img src="https://i.imgur.com/vmJPD4c.png" alt="Logo" class="h-16 w-auto object-contain">
+                    <h1 class="text-4xl font-serif tracking-tight flex items-center leading-none">
+                        <span class="text-stone-900 font-bold">Pixie's</span>
+                        <span class="text-stone-400 font-light italic ml-2">Pantry</span>
+                    </h1>
+                </div>
+                <div class="space-y-4 border-l-2 border-rose-200 pl-6 py-2">
+                    <p class="text-stone-600 font-serif leading-relaxed italic text-xl max-w-lg">
+                        "Transparency isn't a feature—it's the foundation. We aren't just selling hardware; we're pushing for healthcare recognition."
+                    </p>
+                </div>
+                <div class="pt-4">
+                    <p class="text-[9px] font-black text-stone-400 uppercase tracking-[0.4em] mb-2">ENTITY VERIFICATION</p>
+                    <p class="text-xs font-bold text-stone-900 uppercase tracking-widest">BUILT BY DUSTY MCLEAN // MYNODE</p>
+                </div>
+            </div>
+            
+            <div class="lg:col-span-4 grid grid-cols-2 gap-10">
+                <div>
+                    <h4 class="text-[10px] font-black uppercase tracking-[0.4em] mb-8 text-stone-400">REGISTRY</h4>
+                    <ul class="space-y-5 text-[11px] font-bold text-stone-600 uppercase tracking-[0.2em]">
+                        <li><a href="https://vapes.pixiespantryshop.com" class="hover:text-rose-500 transition-colors">PROVISIONS</a></li>
+                        <li><a href="index.html" class="hover:text-rose-500 transition-colors">MAIN PORTAL</a></li>
+                        <li><a href="audit.html" class="hover:text-rose-500 transition-colors">THE AUDIT</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-[10px] font-black uppercase tracking-[0.4em] mb-8 text-stone-400">SANCTUARY</h4>
+                    <ul class="space-y-5 text-[11px] font-bold text-stone-600 uppercase tracking-[0.2em]">
+                        <li><a href="sanctuary.html" class="hover:text-rose-500 transition-colors">KNOWLEDGE BASE</a></li>
+                        <li><a href="logistics.html" class="hover:text-rose-500 transition-colors">LOGISTICS</a></li>
+                        <li><a href="warranty.html" class="hover:text-rose-500 transition-colors">WARRANTY</a></li>
+                        <li><a href="support.html" class="hover:text-rose-500 transition-colors">SUPPORT DESK</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="lg:col-span-3 lg:text-right space-y-8">
+                <h4 class="text-[10px] font-black uppercase tracking-[0.4em] mb-8 text-stone-400">COORDINATES</h4>
+                <div class="space-y-2">
+                    <p class="text-xl font-serif text-stone-800 italic">Mississippi</p>
+                    <p class="text-[11px] text-stone-500 font-mono tracking-[0.2em]">30.15.54.N 90.45.22.W</p>
+                </div>
+                <div class="flex lg:justify-end gap-6 pt-8 text-stone-300">
+                    <i data-lucide="shield" class="w-5 h-5"></i>
+                    <i data-lucide="award" class="w-5 h-5"></i>
+                    <i data-lucide="book-open" class="w-5 h-5"></i>
+                </div>
+            </div>
+        </div>
+        
+        <div class="max-w-7xl mx-auto pt-10 border-t border-stone-200/60 text-center">
+            <p class="text-[9px] text-stone-500 font-black uppercase tracking-[0.4em]">© 2026 PIXIE'S PANTRY // PROFESSIONAL REGISTRY</p>
+        </div>
+    </footer>
+
+    <script>
+        // Device Data
+        const devices = [
+            {
+                id: 'volcano-hybrid',
+                name: 'Volcano Hybrid',
+                brand: 'Storz & Bickel',
+                image: 'https://picsum.photos/seed/volcano/400/400',
+                auditScore: 98,
+                metrics: {
+                    vaporPathPurity: 99,
+                    thermalStability: 99,
+                    bioCompatibility: 98,
+                    sanitization: 96,
+                    traceability: 100
+                },
+                teardown: [
+                    {
+                        title: 'Medical-Grade Air Pump',
+                        description: 'The internal diaphragm pump is built to medical standards, ensuring a constant, filtered air stream for balloon inflation.',
+                        material: 'High-Performance Elastomers',
+                        auditRelevance: 'ISO 13485 compliance ensures the air source is free from mechanical lubricants or particulate shedding.',
+                        technicalTerm: {
+                            term: 'ISO 13485',
+                            definition: 'An international standard that outlines the requirements for a quality management system specific to the medical devices industry.'
+                        }
+                    },
+                    {
+                        title: 'Stainless Steel Heat Exchanger',
+                        description: 'A massive aluminum heat exchanger is encapsulated in stainless steel to prevent metallic leaching while maintaining extreme thermal mass.',
+                        material: '316L Stainless Steel',
+                        auditRelevance: 'Ensures the air is heated to precise temperatures without contact with heating elements or electronics.',
+                        technicalTerm: {
+                            term: 'Thermal Mass',
+                            definition: 'The ability of a material to absorb and store heat energy.'
+                        }
+                    },
+                    {
+                        title: 'Valve & Balloon System',
+                        description: 'The Easy Valve system uses medical-grade PET balloons and heat-resistant plastics for aerosol storage.',
+                        material: 'Medical Grade PET / PEEK',
+                        auditRelevance: 'Allows for titrated dosage delivery and aerosol cooling before inhalation.',
+                    }
+                ]
+            },
+            {
+                id: 'arizer-solo-3',
+                name: 'Solo 3',
+                brand: 'Arizer',
+                image: 'https://picsum.photos/seed/solo3/400/400',
+                auditScore: 96,
+                metrics: {
+                    vaporPathPurity: 100,
+                    thermalStability: 94,
+                    bioCompatibility: 98,
+                    sanitization: 98,
+                    traceability: 92
+                },
+                teardown: [
+                    {
+                        title: 'All-Glass Vapor Path',
+                        description: 'The vapor travels exclusively through a borosilicate glass aroma tube, from the herb chamber to the mouthpiece.',
+                        material: 'Borosilicate Glass 3.3',
+                        auditRelevance: 'Total Thermal Isolation (TTI). Zero contact with plastics, metals, or electronics in the vapor path.',
+                        technicalTerm: {
+                            term: 'Leachate',
+                            definition: 'Chemicals that migrate from a material into a liquid or gas, potentially causing contamination.'
+                        }
+                    },
+                    {
+                        title: 'Ceramic Heating Element',
+                        description: 'A high-purity ceramic heater provides rapid, stable heat without the risk of oxidation found in metal coils.',
+                        material: 'Alumina Ceramic',
+                        auditRelevance: 'Bio-inert heating interface ensures no metallic off-gassing at operational temperatures.'
+                    },
+                    {
+                        title: 'Isolated Airpath',
+                        description: 'The intake air is physically separated from the internal electronics and battery compartment.',
+                        material: 'Stainless Steel / Glass',
+                        auditRelevance: 'Prevents inhalation of VOCs from circuit boards or battery components.',
+                        technicalTerm: {
+                            term: 'VOCs',
+                            definition: 'Volatile Organic Compounds; organic chemicals that have a high vapor pressure at ordinary room temperature.'
+                        }
+                    }
+                ]
+            },
+            {
+                id: 'puffco-peak-pro-v2',
+                name: 'Peak Pro (V2)',
+                brand: 'Puffco',
+                image: 'https://picsum.photos/seed/peakpro/400/400',
+                auditScore: 94,
+                metrics: {
+                    vaporPathPurity: 92,
+                    thermalStability: 98,
+                    bioCompatibility: 95,
+                    sanitization: 90,
+                    traceability: 94
+                },
+                teardown: [
+                    {
+                        title: '3D Heating Chamber',
+                        description: 'The 3D chamber heats from the side walls, not just the bottom, preventing oil from pooling and burning.',
+                        material: 'Ceramic / Gold-Plated Contacts',
+                        auditRelevance: 'Precision Thermoregulation Control (PTC) via embedded sensors in the chamber walls.',
+                        technicalTerm: {
+                            term: 'PID Loop',
+                            definition: 'A control loop mechanism that uses feedback to maintain a set temperature with high precision.'
+                        }
+                    },
+                    {
+                        title: 'Water Filtration Manifold',
+                        description: 'The glass attachment provides hydrated particulate filtration, cooling the aerosol and removing heavy particles.',
+                        material: 'Hand-Blown Borosilicate Glass',
+                        auditRelevance: 'Hydrated filtration reduces respiratory irritation and improves aerosol delivery.',
+                    },
+                    {
+                        title: 'Oculus Carb Cap',
+                        description: 'A press-fit silicone and glass cap that creates a directional air stream within the chamber.',
+                        material: 'USP Class VI Silicone',
+                        auditRelevance: 'Medical-grade silicone ensures no off-gassing in the high-heat zone.',
+                        technicalTerm: {
+                            term: 'USP Class VI',
+                            definition: 'One of the most stringent testing protocols for medical-grade plastics and polymers.'
+                        }
+                    }
+                ]
+            }
+        ];
+
+        // State
+        let currentDeviceIndex = 0;
+        let currentStepIndex = 0;
+
+        // Initialize
+        function init() {
+            lucide.createIcons();
+            renderDeviceSelector();
+            renderComparisonSelectors();
+            updateTeardown();
+            updateComparison();
+        }
+
+        // Teardown Logic
+        function renderDeviceSelector() {
+            const container = document.getElementById('device-selector');
+            container.innerHTML = devices.map((d, i) => `
+                <button onclick="selectDevice(${i})" class="px-4 py-2 rounded-full text-[10px] font-black uppercase tracking-widest transition-all ${i === currentDeviceIndex ? 'bg-stone-900 text-white' : 'bg-stone-100 text-stone-400 hover:bg-stone-200'}">
+                    ${d.name}
+                </button>
+            `).join('');
+        }
+
+        function selectDevice(index) {
+            currentDeviceIndex = index;
+            currentStepIndex = 0;
+            renderDeviceSelector();
+            updateTeardown();
+        }
+
+        function updateTeardown() {
+            const device = devices[currentDeviceIndex];
+            const step = device.teardown[currentStepIndex];
+
+            document.getElementById('teardown-image').src = device.image;
+            document.getElementById('step-number').innerText = `STEP 0${currentStepIndex + 1} // ${step.title.toUpperCase()}`;
+            document.getElementById('step-title').innerText = step.title;
+            document.getElementById('step-description').innerText = step.description;
+            document.getElementById('step-material').innerText = step.material;
+            document.getElementById('step-relevance').innerText = step.auditRelevance;
+
+            const techSection = document.getElementById('step-technical');
+            if (step.technicalTerm) {
+                techSection.classList.remove('hidden');
+                document.getElementById('tech-term').innerText = step.technicalTerm.term;
+                document.getElementById('tech-definition').innerText = step.technicalTerm.definition;
+            } else {
+                techSection.classList.add('hidden');
+            }
+
+            renderStepDots();
+            lucide.createIcons();
+        }
+
+        function renderStepDots() {
+            const container = document.getElementById('step-dots');
+            const device = devices[currentDeviceIndex];
+            container.innerHTML = device.teardown.map((_, i) => `
+                <button onclick="goToStep(${i})" class="w-2 h-2 rounded-full transition-all ${i === currentStepIndex ? 'bg-rose-500 w-6' : 'bg-stone-200 hover:bg-stone-300'}"></button>
+            `).join('');
+        }
+
+        function nextStep() {
+            const device = devices[currentDeviceIndex];
+            currentStepIndex = (currentStepIndex + 1) % device.teardown.length;
+            updateTeardown();
+        }
+
+        function prevStep() {
+            const device = devices[currentDeviceIndex];
+            currentStepIndex = (currentStepIndex - 1 + device.teardown.length) % device.teardown.length;
+            updateTeardown();
+        }
+
+        function goToStep(index) {
+            currentStepIndex = index;
+            updateTeardown();
+        }
+
+        // Comparison Logic
+        function renderComparisonSelectors() {
+            const selectA = document.getElementById('compare-a');
+            const selectB = document.getElementById('compare-b');
+            
+            const options = devices.map((d, i) => `<option value="${i}">${d.name}</option>`).join('');
+            selectA.innerHTML = options;
+            selectB.innerHTML = options;
+            
+            selectB.value = "1";
+        }
+
+        function updateComparison() {
+            const idxA = document.getElementById('compare-a').value;
+            const idxB = document.getElementById('compare-b').value;
+            const deviceA = devices[idxA];
+            const deviceB = devices[idxB];
+
+            const metrics = [
+                { key: 'vaporPathPurity', label: 'Vapor Path Purity' },
+                { key: 'thermalStability', label: 'Thermal Stability' },
+                { key: 'bioCompatibility', label: 'Bio-Compatibility' },
+                { key: 'sanitization', label: 'Sanitization' }
+            ];
+
+            const container = document.getElementById('comparison-metrics');
+            container.innerHTML = metrics.map(m => `
+                <div class="space-y-4">
+                    <div class="flex justify-between items-end">
+                        <span class="text-[10px] font-black text-stone-400 uppercase tracking-widest">${m.label}</span>
+                        <div class="flex gap-4 text-[10px] font-bold">
+                            <span class="text-stone-900">${deviceA.metrics[m.key]}%</span>
+                            <span class="text-stone-400">vs</span>
+                            <span class="text-rose-500">${deviceB.metrics[m.key]}%</span>
+                        </div>
+                    </div>
+                    <div class="h-1.5 w-full bg-stone-100 rounded-full overflow-hidden flex">
+                        <div class="h-full bg-stone-900 transition-all duration-1000" style="width: ${deviceA.metrics[m.key]}%"></div>
+                        <div class="h-full bg-rose-500/20 transition-all duration-1000" style="width: ${deviceB.metrics[m.key]}%"></div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Expandable Logic
+        function toggleExpandable(button) {
+            const content = button.nextElementSibling;
+            const icon = button.querySelector('.rotate-icon');
+            
+            const isOpen = content.classList.contains('open');
+            
+            // Close all
+            document.querySelectorAll('.expandable-content').forEach(el => el.classList.remove('open'));
+            document.querySelectorAll('.rotate-icon').forEach(el => el.classList.remove('open'));
+            
+            if (!isOpen) {
+                content.classList.add('open');
+                icon.classList.add('open');
+            }
+        }
+
+        window.onload = init;
+    </script>
+</body>
+</html>
