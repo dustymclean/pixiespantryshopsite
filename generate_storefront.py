@@ -935,22 +935,14 @@ def generate_site():
             
             <div class="sidebar-section">Browse</div>
             <a href="{depth}index.html" class="sidebar-link">All Products</a>
-        """
-        
-        # Sort brands into Sidebar
-        html += f'<div class="sidebar-section">Shop By Brand</div>'
-        for brand in sorted(brands.keys()):
-            if not brand or brand == "Premium": continue
-            html += f'<a href="{depth}brands/{slugify(brand)}.html" class="sidebar-link">{brand}</a>'
+            
+            <div class="sidebar-section">Store Info</div>
+            <a href="{depth}sanctuary.html" class="sidebar-link">About / Our Philosophy</a>
+            <a href="{depth}support.html" class="sidebar-link">FAQ & Guide</a>
+            <a href="{depth}logistics.html" class="sidebar-link">Shipping & Delivery</a>
+            <a href="{depth}warranty.html" class="sidebar-link">Returns & Exchanges</a>
+            <a href="{depth}audit.html" class="sidebar-link">Privacy & Terms</a>
 
-        html += f'<div class="sidebar-section">Shop By Category</div>'
-        for b, cats in categories.items():
-            for cat in sorted(cats.keys()):
-                if not cat: continue
-                if len(cats[cat]) > 0: # Only add category if it contains products
-                    html += f'<a href="{depth}categories/{slugify(cat)}.html" class="sidebar-link">{cat}</a>'
-                
-        html += f"""
             <div class="sidebar-community">
                 <h4>Power in Numbers</h4>
                 <p>Joining our Discord helps us demonstrate community engagement to distributors, unlocking cheaper wholesale prices that we pass directly to you.</p>
@@ -958,9 +950,10 @@ def generate_site():
                 <a href="https://discord.gg/dm8deA2u" target="_blank" class="btn" style="background: var(--gold); color: #000; padding: 8px; font-size: 11px; width: 100%; box-sizing: border-box;">Join the Mission</a>
             </div>
 
-            <div class="sidebar-footer">
+            <div class="sidebar-footer" style="display: flex; flex-direction: column; gap: 8px;">
                 <a href="{depth}login.html" class="sidebar-link">Log In</a>
                 <a href="{depth}signup.html" class="sidebar-link">Sign Up</a>
+                <a href="#" class="sidebar-link" style="font-size: 12px; color: #666;">Forgot Password</a>
             </div>
         </aside>
         """
