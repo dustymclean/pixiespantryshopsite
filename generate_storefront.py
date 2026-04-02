@@ -9,7 +9,7 @@ def apply_lexicon(text):
     if not text: return ""
     text = str(text)
     
-    protected_urls = ["vapes.pixiespantryshop.com", "shop.pixiespantryshop.com", "pixiespantryshop.com", "dyspensr.com"]
+    protected_urls = ["shop.pixiespantryshop.com", "shop.pixiespantryshop.com", "pixiespantryshop.com", "dyspensr.com"]
     for i, p in enumerate(protected_urls):
         text = text.replace(p, f"__PROTECTED_URL_{i}__")
         
@@ -360,6 +360,40 @@ def fetch_dyspensr_data():
             print(f"Error fetching page {page}: {e}")
             break
             
+    # -- SYNERGY INTEGRATION --
+    synergy_path = "/Users/dusty/Desktop/Synergy_Scraper/synergy_products.json"
+    if os.path.exists(synergy_path):
+        print("Fetching live data from Synergy...")
+        with open(synergy_path, "r", encoding="utf-8") as sf:
+            s_data = json.load(sf)
+            for sp in s_data.get("products", []):
+                min_price = float('inf')
+                for v in sp.get("in_stock_variants", []):
+                    try:
+                        p_val = float(v.get("price", 0))
+                        if p_val < min_price: min_price = p_val
+                    except: pass
+                
+                sp["min_price"] = min_price if min_price != float('inf') else 0.0
+                
+                v_images = []
+                for v in sp.get("in_stock_variants", []):
+                    if v.get("variant_image"): v_images.append(v.get("variant_image"))
+                if v_images:
+                    sp["all_images"] = list(set(v_images))
+                    sp["featured_image"] = sp["all_images"][0]
+                elif "image" in sp and sp["image"]:
+                    sp["all_images"] = [sp["image"]]
+                    sp["featured_image"] = sp["image"]
+                elif "images" in sp and sp["images"]:
+                    sp["all_images"] = sp["images"]
+                    sp["featured_image"] = sp["images"][0]
+                else:
+                    sp["all_images"] = []
+                    sp["featured_image"] = "https://via.placeholder.com/400"
+                
+                grouped_products[sp["title"]] = sp
+
     return list(grouped_products.values())
 
 def generate_site():
@@ -925,11 +959,9 @@ def generate_site():
         html = f"""
         <aside class="sidebar">
             <a href="https://pixiespantryshop.com" class="sidebar-logo">Pixie's Pantry</a>
-            <div class="sidebar-tagline">Vape & Smoke Accessories</div>
+            <div class="sidebar-tagline">VAPE & SMOKE ACCESSORIES</div>
             
             <a href="https://pixiespantryshop.com" class="sidebar-link" style="color: var(--gold); font-weight: 700;">🏠 Pantry Home</a>
-            <a href="https://vapes.pixiespantryshop.com" class="sidebar-link">💨 Vape Shop</a>
-            <a href="https://shop.pixiespantryshop.com" class="sidebar-link">🛒 Smoke Shop</a>
             
             <input type="text" id="searchInput" class="search-box" placeholder="Search catalog..." onkeyup="applyFilters()">
             
@@ -943,6 +975,20 @@ def generate_site():
             <a href="{depth}warranty.html" class="sidebar-link">Returns & Exchanges</a>
             <a href="{depth}audit.html" class="sidebar-link">Privacy & Terms</a>
 
+            <div class="sidebar-section">Shop By Category</div>
+        """
+        for b, cats in categories.items():
+            for cat in sorted(cats.keys()):
+                if not cat: continue
+                if len(cats[cat]) > 0:
+                    html += f'<a href="{depth}categories/{slugify(cat)}.html" class="sidebar-link">{cat}</a>'
+        
+        html += '<div class="sidebar-section">Shop By Brand</div>'
+        for brand in sorted(brands.keys()):
+            if not brand or brand == "Premium": continue
+            html += f'<a href="{depth}brands/{slugify(brand)}.html" class="sidebar-link">{brand}</a>'
+
+        html += f"""
             <div class="sidebar-community">
                 <h4>Power in Numbers</h4>
                 <p>Joining our Discord helps us demonstrate community engagement to distributors, unlocking cheaper wholesale prices that we pass directly to you.</p>
@@ -1098,7 +1144,7 @@ def generate_site():
         # Build JSON-LD
         json_ld_scripts = ""
         for p in product_list:
-            json_ld_scripts += build_json_ld(p, "https://vapes.pixiespantryshop.com")
+            json_ld_scripts += build_json_ld(p, "https://shop.pixiespantryshop.com")
             
         html = f"""<!DOCTYPE html>
 <html lang="en">
@@ -1119,7 +1165,7 @@ def generate_site():
     <meta property="og:title" content="{sanitize_for_google(title)} | Pixie's Pantry">
     <meta property="og:description" content="{sanitize_for_google(subtitle)}">
     <meta property="og:type" content="website">
-    <link rel="canonical" href="https://vapes.pixiespantryshop.com/{filename}">
+    <link rel="canonical" href="https://shop.pixiespantryshop.com/{filename}">
     {json_ld_scripts}
     <link rel="stylesheet" href="{depth}css/style.css">
 </head>
@@ -1138,9 +1184,7 @@ def generate_site():
                     <h3>Pixie's Pantry</h3>
                     <p style="max-width: 300px;">Curating the absolute highest tier of vaporization and glass hardware. Direct wholesale access, vetted specifically for the community. Elevate your ritual.</p>
                     <div style="margin-top: 15px;">
-                        <a href="https://pixiespantryshop.com" style="color: var(--gold); font-weight: 700; text-decoration: none;">🏠 Pantry Home</a> &nbsp;|&nbsp;
-                        <a href="https://vapes.pixiespantryshop.com" style="color: #888; text-decoration: none;">💨 Vape Shop</a> &nbsp;|&nbsp;
-                        <a href="https://shop.pixiespantryshop.com" style="color: #888; text-decoration: none;">🛒 Smoke Shop</a>
+                        <a href="https://pixiespantryshop.com" style="color: var(--gold); font-weight: 700; text-decoration: none;">🏠 Pantry Home</a>
                     </div>
                 </div>
                 <div class="footer-col">
@@ -1240,9 +1284,7 @@ def generate_site():
                     <h3>Pixie's Pantry</h3>
                     <p style="max-width: 300px;">Curating the absolute highest tier of vaporization and glass hardware. Direct wholesale access, vetted specifically for the community. Elevate your ritual.</p>
                     <div style="margin-top: 15px;">
-                        <a href="https://pixiespantryshop.com" style="color: var(--gold); font-weight: 700; text-decoration: none;">🏠 Pantry Home</a> &nbsp;|&nbsp;
-                        <a href="https://vapes.pixiespantryshop.com" style="color: #888; text-decoration: none;">💨 Vape Shop</a> &nbsp;|&nbsp;
-                        <a href="https://shop.pixiespantryshop.com" style="color: #888; text-decoration: none;">🛒 Smoke Shop</a>
+                        <a href="https://pixiespantryshop.com" style="color: var(--gold); font-weight: 700; text-decoration: none;">🏠 Pantry Home</a>
                     </div>
                 </div>
                 <div class="footer-col">
@@ -1410,10 +1452,10 @@ def generate_site():
             if f.endswith(".html"): sitemap_pages.append(f"categories/{f}")
         
     with open(os.path.join(OUTPUT_DIR, "sitemap.xml"), "w", encoding="utf-8") as f:
-        f.write(build_sitemap("https://vapes.pixiespantryshop.com", sitemap_pages))
+        f.write(build_sitemap("https://shop.pixiespantryshop.com", sitemap_pages))
         
     with open(os.path.join(OUTPUT_DIR, "robots.txt"), "w", encoding="utf-8") as f:
-        f.write(f"User-agent: *\nAllow: /\nSitemap: https://vapes.pixiespantryshop.com/sitemap.xml")
+        f.write(f"User-agent: *\nAllow: /\nSitemap: https://shop.pixiespantryshop.com/sitemap.xml")
         
     print("Storefront generated successfully with SEO/Sitemap!")
 
