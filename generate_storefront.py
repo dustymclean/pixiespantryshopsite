@@ -830,11 +830,16 @@ def generate_site():
     def get_sidebar_html(depth=""):
         html = f"""
         <aside class="sidebar">
-            <a href="{depth}index.html" class="sidebar-logo">Pixie's Pantry</a>
+            <a href="https://pixiespantryshop.com" class="sidebar-logo">Pixie's Pantry</a>
             <div class="sidebar-tagline">Vape & Smoke Accessories</div>
+            
+            <a href="https://pixiespantryshop.com" class="sidebar-link" style="color: var(--gold); font-weight: 700;">🏠 Pantry Home</a>
+            <a href="https://vapes.pixiespantryshop.com" class="sidebar-link">💨 Vape Shop</a>
+            <a href="https://shop.pixiespantryshop.com" class="sidebar-link">🛒 Smoke Shop</a>
             
             <input type="text" id="searchInput" class="search-box" placeholder="Search catalog..." onkeyup="applyFilters()">
             
+            <div class="sidebar-section">Browse</div>
             <a href="{depth}index.html" class="sidebar-link">All Products</a>
         """
         
@@ -1045,6 +1050,11 @@ def generate_site():
                 <div class="footer-col">
                     <h3>Pixie's Pantry</h3>
                     <p style="max-width: 300px;">Curating the absolute highest tier of vaporization and glass hardware. Direct wholesale access, vetted specifically for the community. Elevate your ritual.</p>
+                    <div style="margin-top: 15px;">
+                        <a href="https://pixiespantryshop.com" style="color: var(--gold); font-weight: 700; text-decoration: none;">🏠 Pantry Home</a> &nbsp;|&nbsp;
+                        <a href="https://vapes.pixiespantryshop.com" style="color: #888; text-decoration: none;">💨 Vape Shop</a> &nbsp;|&nbsp;
+                        <a href="https://shop.pixiespantryshop.com" style="color: #888; text-decoration: none;">🛒 Smoke Shop</a>
+                    </div>
                 </div>
                 <div class="footer-col">
                     <h3>Explore</h3>
@@ -1142,6 +1152,11 @@ def generate_site():
                 <div class="footer-col">
                     <h3>Pixie's Pantry</h3>
                     <p style="max-width: 300px;">Curating the absolute highest tier of vaporization and glass hardware. Direct wholesale access, vetted specifically for the community. Elevate your ritual.</p>
+                    <div style="margin-top: 15px;">
+                        <a href="https://pixiespantryshop.com" style="color: var(--gold); font-weight: 700; text-decoration: none;">🏠 Pantry Home</a> &nbsp;|&nbsp;
+                        <a href="https://vapes.pixiespantryshop.com" style="color: #888; text-decoration: none;">💨 Vape Shop</a> &nbsp;|&nbsp;
+                        <a href="https://shop.pixiespantryshop.com" style="color: #888; text-decoration: none;">🛒 Smoke Shop</a>
+                    </div>
                 </div>
                 <div class="footer-col">
                     <h3>Explore</h3>
