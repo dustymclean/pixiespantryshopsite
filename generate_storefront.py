@@ -4,6 +4,98 @@ import os
 import re
 
 import json
+
+def apply_lexicon(text):
+    if not text: return ""
+    text = str(text)
+    
+    protected_urls = ["vapes.pixiespantryshop.com", "shop.pixiespantryshop.com", "pixiespantryshop.com", "dyspensr.com"]
+    for i, p in enumerate(protected_urls):
+        text = text.replace(p, f"__PROTECTED_URL_{i}__")
+        
+    lexicon = {
+        r'\bbongs\b': 'Hydro-Filtration Devices',
+        r'\bbong\b': 'Hydro-Filtration Device',
+        r'\bwater pipes\b': 'Hydro-Vessels',
+        r'\bwater pipe\b': 'Hydro-Vessel',
+        r'\bdab rigs\b': 'Concentrate Filtration Systems',
+        r'\bdab rig\b': 'Concentrate Filtration System',
+        r'\brigs\b': 'Desktop Filtration Apparatuses',
+        r'\brig\b': 'Desktop Filtration Apparatus',
+        r'\bbowls\b': 'Material Receptacles',
+        r'\bbowl\b': 'Material Receptacle',
+        r'\bherb slides\b': 'Material Receptacles',
+        r'\bherb slide\b': 'Material Receptacle',
+        r'\bbangers\b': 'Quartz Crucibles',
+        r'\bbanger\b': 'Quartz Crucible',
+        r'\bdabs\b': 'Extracts',
+        r'\bdabbing\b': 'Extracting',
+        r'\bdab\b': 'Extract',
+        r'\bwaxes\b': 'Essential Oils',
+        r'\bwax\b': 'Essential Oil',
+        r'\bweed\b': 'Botanical Blend',
+        r'\bmarijuana\b': 'Botanical Blend',
+        r'\bjoints\b': 'Pre-Rolled Inhalation Units',
+        r'\bjoint\b': 'Pre-Rolled Inhalation Unit',
+        r'\bblunts\b': 'Pre-Rolled Inhalation Units',
+        r'\bblunt\b': 'Pre-Rolled Inhalation Unit',
+        r'\bpre-?rolls\b': 'Pre-Packed Botanicals',
+        r'\bpre-?roll\b': 'Pre-Packed Botanical',
+        r'\bglob mops\b': 'Precision Micro-Sanitization Applicators',
+        r'\bglob mop\b': 'Precision Micro-Sanitization Applicator',
+        r'\bk-?clips\b': 'Joint Retention Clips',
+        r'\bk-?clip\b': 'Joint Retention Clip',
+        r'\bdrop downs\b': 'Thermal Displacement Adapters',
+        r'\bdrop down\b': 'Thermal Displacement Adapter',
+        r'\bash catchers\b': 'Pre-Filtration Modules',
+        r'\bash catcher\b': 'Pre-Filtration Module',
+        r'\bvapes\b': 'Aromatherapy Devices',
+        r'\bvapers\b': 'Aromatherapy Users',
+        r'\bvaping\b': 'Aromatherapy',
+        r'\bvape\b': 'Aromatherapy Device',
+        r'\bvaporizers\b': 'Thermal Extractors',
+        r'\bvaporizer\b': 'Thermal Extractor',
+        r'\bhits\b': 'Draws',
+        r'\bhit\b': 'Draw',
+        r'\bsmokes\b': 'Aromas',
+        r'\bsmoking\b': 'Aromatherapy Session',
+        r'\bsmoker\b': 'Aromatherapy User',
+        r'\bsmoke\b': 'Aroma',
+        r'\bcbd\b': 'Wellness Blend',
+        r'\bthc\b': 'Wellness Blend',
+        r'\be-cig(?:arette)?s\b': 'Electronic Diffusers',
+        r'\be-cig(?:arette)?\b': 'Electronic Diffuser',
+        r'\bglass pipes\b': 'Handheld Glass Pieces',
+        r'\bglass pipe\b': 'Handheld Glass Piece',
+        r'\bpipes\b': 'Handheld Pieces',
+        r'\bpipe\b': 'Handheld Piece',
+        r'\bchillums\b': 'Taster Pieces',
+        r'\bchillum\b': 'Taster Piece',
+        r'\bnectar collectors\b': 'Direct Draw Straws',
+        r'\bnectar collector\b': 'Direct Draw Straw',
+        r'\bshatter\b': 'Extract',
+        r'\brosin\b': 'Extract',
+        r'\bconcentrates\b': 'Essential Extracts',
+        r'\bconcentrate\b': 'Essential Extract'
+    }
+    
+    def match_case(word, replacement):
+        if word.isupper(): return replacement.upper()
+        elif word.istitle():
+            return ' '.join(w.capitalize() for w in replacement.split(' '))
+        elif word.islower(): return replacement.lower()
+        return replacement
+        
+    for pattern, replacement in lexicon.items():
+        text = re.sub(pattern, lambda m: match_case(m.group(0), replacement), text, flags=re.IGNORECASE)
+        
+    for i, p in enumerate(protected_urls):
+        text = text.replace(f"__PROTECTED_URL_{i}__", p)
+        
+    return text
+
+
+
 def sanitize_for_google(text):
     if not text: return ""
     text = str(text)
@@ -168,9 +260,9 @@ def fetch_dyspensr_data():
                 break
                 
             for p in data["products"]:
-                title = (p.get("title") or "").strip()
-                body_html = p.get("body_html") or ""
-                tags = ", ".join(p.get("tags", []))
+                title = apply_lexicon((p.get("title") or "").strip())
+                body_html = apply_lexicon(p.get("body_html") or "")
+                tags = apply_lexicon(", ".join(p.get("tags", [])))
                 
                 base_images = [img.get("src", "") for img in p.get("images", []) if img.get("src")]
                 primary_image = base_images[0] if base_images else "https://placehold.co/400x400/f5f5f5/999?text=No+Image"
@@ -178,7 +270,7 @@ def fetch_dyspensr_data():
                 for v in p.get("variants", []):
                     if not v.get("available", False): continue
                         
-                    v_title = (v.get("title") or "").strip()
+                    v_title = apply_lexicon((v.get("title") or "").strip())
                     if v_title == "Default Title": v_title = ""
                     
                     sku = (v.get("sku") or "").strip()
@@ -215,6 +307,8 @@ def fetch_dyspensr_data():
                         spec_list = [s.strip() for s in specs_raw.split(',') if s.strip() and "TAG" not in s.upper() and "SALE ELIGIBLE" not in s.upper()]
                         spec_bullets = "".join([f"<li><strong>{s}</strong></li>" for s in spec_list[:6]]) if spec_list else "<li>Premium construction and strict quality tolerances.</li>"
                         
+                        cat = apply_lexicon(cat)
+                        prod_title = apply_lexicon(prod_title)
                         clean_desc = f'''
                         {html_desc}
                         <p>The <strong>{prod_title}</strong> is a highly vetted addition to the <em>{cat}</em> lineup. Selected specifically for the Pixie's Pantry Group Buy, this piece was evaluated for material quality, performance consistency, and long-term durability.</p>
