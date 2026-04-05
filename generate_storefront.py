@@ -228,14 +228,27 @@ def fetch_dyspensr_data():
                 price = row.get("Your Retail Price", "")
                 cat = row.get("Product Type", "Accessories").strip() or "Accessories"
                 brand = row.get("Brand", "Premium").strip() or "Premium"
+                image_url = row.get("Image URL", "").strip()
+                seo_title = row.get("SEO Title", "").strip()
+                meta_description = row.get("Meta Description", "").strip()
+                url_handle = row.get("URL Handle", "").strip()
+                search_tags = row.get("Search Tags", "")
+                forced_inclusion = status.lower() not in ["hidden", "inactive", "out of stock", "out-of-stock"]
                 
                 csv_db[sku] = {
                     "Status": status,
                     "Price": price,
                     "Category": cat,
                     "Brand": brand,
-                    "Specs": row.get("Search Tags", ""),
-                    "Featured": row.get("Featured", "No")
+                    "Specs": search_tags,
+                    "Featured": row.get("Featured", "No"),
+                    "ImageURL": image_url,
+                    "SEOTitle": seo_title,
+                    "MetaDescription": meta_description,
+                    "URLHandle": url_handle,
+                    "ProductName": title,
+                    "Variant": var,
+                    "ForcedInclusion": forced_inclusion
                 }
 
     print("Fetching live data from Dyspensr...")
@@ -268,8 +281,6 @@ def fetch_dyspensr_data():
                 primary_image = base_images[0] if base_images else "https://placehold.co/400x400/f5f5f5/999?text=No+Image"
                 
                 for v in p.get("variants", []):
-                    if not v.get("available", False): continue
-                        
                     v_title = apply_lexicon((v.get("title") or "").strip())
                     if v_title == "Default Title": v_title = ""
                     
@@ -280,6 +291,10 @@ def fetch_dyspensr_data():
                     csv_item = csv_db.get(sku)
                     if not csv_item or str(csv_item["Status"]).strip().lower() == "hidden": continue
                     
+                    live_available = bool(v.get("available", False))
+                    if (not live_available) and (not csv_item.get("ForcedInclusion", False)):
+                        continue
+                    
                     price_str = csv_item["Price"]
                     if not price_str: continue
                     try:
@@ -288,7 +303,7 @@ def fetch_dyspensr_data():
                     except: continue
                     
                     v_img_obj = v.get("featured_image")
-                    v_img = v_img_obj.get("src") if v_img_obj else primary_image
+                    v_img = v_img_obj.get("src") if v_img_obj else (csv_item.get("ImageURL") or primary_image)
                     
                     is_color = is_color_variant(v_title) or not v_title
                     prod_title = title if is_color else f"{title} - {v_title}"
