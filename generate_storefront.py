@@ -233,7 +233,6 @@ def fetch_dyspensr_data():
                 meta_description = row.get("Meta Description", "").strip()
                 url_handle = row.get("URL Handle", "").strip()
                 search_tags = row.get("Search Tags", "")
-                forced_inclusion = status.lower() not in ["hidden", "inactive", "out of stock", "out-of-stock"]
                 
                 csv_db[sku] = {
                     "Status": status,
@@ -247,8 +246,7 @@ def fetch_dyspensr_data():
                     "MetaDescription": meta_description,
                     "URLHandle": url_handle,
                     "ProductName": title,
-                    "Variant": var,
-                    "ForcedInclusion": forced_inclusion
+                    "Variant": var
                 }
 
     print("Fetching live data from Dyspensr...")
@@ -281,6 +279,8 @@ def fetch_dyspensr_data():
                 primary_image = base_images[0] if base_images else "https://placehold.co/400x400/f5f5f5/999?text=No+Image"
                 
                 for v in p.get("variants", []):
+                    if not v.get("available", False): continue
+                        
                     v_title = apply_lexicon((v.get("title") or "").strip())
                     if v_title == "Default Title": v_title = ""
                     
@@ -290,10 +290,6 @@ def fetch_dyspensr_data():
                     
                     csv_item = csv_db.get(sku)
                     if not csv_item or str(csv_item["Status"]).strip().lower() == "hidden": continue
-                    
-                    live_available = bool(v.get("available", False))
-                    if (not live_available) and (not csv_item.get("ForcedInclusion", False)):
-                        continue
                     
                     price_str = csv_item["Price"]
                     if not price_str: continue
@@ -418,6 +414,39 @@ def generate_site():
     if not products:
         print("No products loaded.")
         return
+
+    print(f"Loaded {len(products)} products.")
+
+    # --- GENERATE LIVING CSV DIRECTLY FROM COMPILED DATA ---
+    live_csv_path = "/Users/dusty/Desktop/shop.pixiespantryshop.com_Live_Catalog.csv"
+    try:
+        with open(live_csv_path, "w", newline="", encoding="utf-8") as f:
+            import csv
+            writer = csv.DictWriter(f, fieldnames=["Store Source", "Brand", "Product Name", "Variant", "SKU", "Price", "Category", "Image URL", "Status"])
+            writer.writeheader()
+            for p in products:
+                brand = p.get("brand", "")
+                cat = p.get("product_type", "")
+                title = p.get("title", "")
+                # Infer source based on variant ID (Synergy uses SYN- or raw handles often for Davinci/Eyce)
+                source = "Synergy" if p.get("in_stock_variants") and str(p.get("in_stock_variants")[0].get("variant_id","")).startswith("SYN-") else "Dyspensr"
+                
+                for v in p.get("in_stock_variants", []):
+                    writer.writerow({
+                        "Store Source": source,
+                        "Brand": brand,
+                        "Product Name": title,
+                        "Variant": v.get("option1_value", ""),
+                        "SKU": v.get("variant_id", ""),
+                        "Price": v.get("price", "0"),
+                        "Category": cat,
+                        "Image URL": v.get("variant_image") or p.get("featured_image", ""),
+                        "Status": "Active"
+                    })
+        print(f"Living CSV successfully exported to: {live_csv_path}")
+    except Exception as e:
+        print(f"Error generating living CSV: {e}")
+    # -------------------------------------------------------
 
     # Organize products
     brands = {}
