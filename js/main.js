@@ -291,18 +291,15 @@
             const catFilter = document.getElementById('catFilter') ? document.getElementById('catFilter').value : 'all';
             
             let visibleCount = 0;
-            const terms = search.split(' ').filter(t => t.trim().length > 0);
+            // Clean punctuation from user search for fuzzier matching
+            const cleanSearch = search.replace(/[^\w\s]/g, ' ').replace(/\s+/g, ' ');
+            const terms = cleanSearch.split(' ').filter(t => t.trim().length > 0);
             
             document.querySelectorAll('.card').forEach(card => {
-                const name = (card.dataset.name || '').toLowerCase();
-                const brand = (card.dataset.brand || '').toLowerCase();
-                const cat = (card.dataset.cat || '').toLowerCase();
-                const tags = (card.dataset.tags || '').toLowerCase();
-                
-                const searchableText = `${name} ${brand} ${cat} ${tags}`;
+                const searchableText = (card.dataset.search || '').toLowerCase();
                 let matchSearch = true;
                 
-                // Advanced search: require all terms to match somewhere
+                // Advanced search: require all terms to match somewhere in the blob
                 if (terms.length > 0) {
                     matchSearch = terms.every(term => searchableText.includes(term));
                 }

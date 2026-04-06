@@ -961,18 +961,15 @@ def generate_site():
             const catFilter = document.getElementById('catFilter') ? document.getElementById('catFilter').value : 'all';
             
             let visibleCount = 0;
-            const terms = search.split(' ').filter(t => t.trim().length > 0);
+            // Clean punctuation from user search for fuzzier matching
+            const cleanSearch = search.replace(/[^\\w\\s]/g, ' ').replace(/\\s+/g, ' ');
+            const terms = cleanSearch.split(' ').filter(t => t.trim().length > 0);
             
             document.querySelectorAll('.card').forEach(card => {
-                const name = (card.dataset.name || '').toLowerCase();
-                const brand = (card.dataset.brand || '').toLowerCase();
-                const cat = (card.dataset.cat || '').toLowerCase();
-                const tags = (card.dataset.tags || '').toLowerCase();
-                
-                const searchableText = `${name} ${brand} ${cat} ${tags}`;
+                const searchableText = (card.dataset.search || '').toLowerCase();
                 let matchSearch = true;
                 
-                // Advanced search: require all terms to match somewhere
+                // Advanced search: require all terms to match somewhere in the blob
                 if (terms.length > 0) {
                     matchSearch = terms.every(term => searchableText.includes(term));
                 }
@@ -1207,8 +1204,21 @@ def generate_site():
             handle = p["handle"]
             safe_name = p['title'].lower().replace('"', '&quot;')
             tags_safe = str(p.get("tags", "")).replace('"', '&quot;')
+            
+            # Build an exhaustive search index string for the card
+            skus = []
+            variants = []
+            for v in p.get("in_stock_variants", []):
+                if v.get("variant_id"): skus.append(str(v.get("variant_id", "")))
+                if v.get("option1_value"): variants.append(str(v.get("option1_value", "")))
+                
+            search_blob = f"{safe_name} {p.get('brand','')} {p.get('product_type','')} {tags_safe} {' '.join(skus)} {' '.join(variants)}".lower()
+            import re
+            search_blob = re.sub(r'[^\w\s]', ' ', search_blob) # strip punctuation
+            search_blob = re.sub(r'\s+', ' ', search_blob).strip()
+            
             grid_html += f"""
-            <div class="card" onclick="openModal('{handle}')" data-name="{safe_name}" data-brand="{p['brand']}" data-cat="{p['product_type']}" data-price="{price}" data-tags="{tags_safe}">
+            <div class="card" onclick="openModal('{handle}')" data-search="{search_blob}" data-name="{safe_name}" data-brand="{p['brand']}" data-cat="{p['product_type']}" data-price="{price}">
                 <img src="{img}" alt="{p['title']}" class="card-img" loading="lazy">
                 <div class="card-body">
                     <div class="card-brand">{p['brand']}</div>
