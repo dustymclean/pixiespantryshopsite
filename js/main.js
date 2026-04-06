@@ -291,14 +291,24 @@
             const catFilter = document.getElementById('catFilter') ? document.getElementById('catFilter').value : 'all';
             
             let visibleCount = 0;
+            const terms = search.split(' ').filter(t => t.trim().length > 0);
+            
             document.querySelectorAll('.card').forEach(card => {
-                const name = card.dataset.name || '';
-                const brand = card.dataset.brand || '';
-                const cat = card.dataset.cat || '';
+                const name = (card.dataset.name || '').toLowerCase();
+                const brand = (card.dataset.brand || '').toLowerCase();
+                const cat = (card.dataset.cat || '').toLowerCase();
+                const tags = (card.dataset.tags || '').toLowerCase();
                 
-                const matchSearch = name.includes(search) || brand.includes(search);
-                const matchBrand = (brandFilter === 'all') || (brand === brandFilter);
-                const matchCat = (catFilter === 'all') || (cat === catFilter);
+                const searchableText = `${name} ${brand} ${cat} ${tags}`;
+                let matchSearch = true;
+                
+                // Advanced search: require all terms to match somewhere
+                if (terms.length > 0) {
+                    matchSearch = terms.every(term => searchableText.includes(term));
+                }
+                
+                const matchBrand = (brandFilter === 'all') || ((card.dataset.brand || '') === brandFilter);
+                const matchCat = (catFilter === 'all') || ((card.dataset.cat || '') === catFilter);
                 
                 if (matchSearch && matchBrand && matchCat) {
                     card.style.display = 'flex';

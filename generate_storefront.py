@@ -201,6 +201,24 @@ def slugify(text):
     text = re.sub(r'[\s_-]+', '-', text)
     return text
 
+def normalize_category(cat):
+    cat_low = cat.lower()
+    if not cat_low or cat_low == "none": return "General Accessories"
+    if any(x in cat_low for x in ['bong', 'hydro-filtration', 'water pipe', 'water-pipe', 'beaker', 'recycler']): return "Hydro-Filtration Devices"
+    if any(x in cat_low for x in ['rig', 'e-nail', 'electric desktop', 'electric-desktop', 'oil desktop', 'oil-desktop', 'concentrate', 'banger', 'extract']): return "Extract Filtration Systems"
+    if any(x in cat_low for x in ['vaporizer', 'thermal extract', 'thermal-extract', 'artiq', 'iq3', 'miqro', 'pv1']): return "Thermal Extractors"
+    if any(x in cat_low for x in ['bubbler']): return "Bubblers"
+    if any(x in cat_low for x in ['hand pipe', 'hand-pipe', 'spoon', 'handheld', 'chill', 'hammer']): return "Handheld Pieces"
+    if any(x in cat_low for x in ['grinder', 'pollen']): return "Preparation Tools"
+    if any(x in cat_low for x in ['roll', 'paper', 'cone', 'wrap', 'hemp-wick', 'filter', 'tip']): return "Rolling Supplies"
+    if any(x in cat_low for x in ['storage', 'case', 'box']): return "Storage & Travel"
+    if any(x in cat_low for x in ['clean']): return "Cleaning Supplies"
+    if any(x in cat_low for x in ['torch', 'lighter']): return "Torches & Lighters"
+    if any(x in cat_low for x in ['ash-catcher', 'downstem', 'bowl']): return "Glass Attachments"
+    if any(x in cat_low for x in ['part', 'accessor', 'attachment', 'coil', 'mouthpiece']): return "Parts & Accessories"
+    if any(x in cat_low for x in ['apparel', 'shirt', 'hat']): return "Apparel"
+    return "General Accessories"
+
 def ensure_dirs():
     os.makedirs(os.path.join(OUTPUT_DIR, "css"), exist_ok=True)
     os.makedirs(os.path.join(OUTPUT_DIR, "js"), exist_ok=True)
@@ -307,6 +325,7 @@ def fetch_dyspensr_data():
                     if not variant_name: variant_name = "Default Option"
 
                     cat = csv_item["Category"]
+                    cat = normalize_category(cat)
                     brand = csv_item["Brand"]
 
                     if prod_title not in grouped_products:
@@ -318,7 +337,6 @@ def fetch_dyspensr_data():
                         spec_list = [s.strip() for s in specs_raw.split(',') if s.strip() and "TAG" not in s.upper() and "SALE ELIGIBLE" not in s.upper()]
                         spec_bullets = "".join([f"<li><strong>{s}</strong></li>" for s in spec_list[:6]]) if spec_list else "<li>Premium construction and strict quality tolerances.</li>"
                         
-                        cat = apply_lexicon(cat)
                         prod_title = apply_lexicon(prod_title)
                         clean_desc = f'''
                         {html_desc}
@@ -338,6 +356,7 @@ def fetch_dyspensr_data():
                             "brand": brand,
                             "product_type": cat,
                             "title": prod_title,
+                            "tags": specs_raw.lower().replace('"', ''),
                             "body_html": clean_desc,
                             "options": [{"name": "Options", "values": []}],
                             "in_stock_variants": [],
@@ -403,6 +422,14 @@ def fetch_dyspensr_data():
                     sp["all_images"] = []
                     sp["featured_image"] = "https://via.placeholder.com/400"
                 
+                sp["product_type"] = normalize_category(sp.get("product_type", "Accessories"))
+                
+                tags_list = sp.get("tags")
+                if isinstance(tags_list, list):
+                    sp["tags"] = ", ".join(tags_list).lower().replace('"', '')
+                else:
+                    sp["tags"] = str(tags_list or "").lower().replace('"', '')
+                    
                 grouped_products[sp["title"]] = sp
 
     return list(grouped_products.values())
@@ -934,14 +961,24 @@ def generate_site():
             const catFilter = document.getElementById('catFilter') ? document.getElementById('catFilter').value : 'all';
             
             let visibleCount = 0;
+            const terms = search.split(' ').filter(t => t.trim().length > 0);
+            
             document.querySelectorAll('.card').forEach(card => {
-                const name = card.dataset.name || '';
-                const brand = card.dataset.brand || '';
-                const cat = card.dataset.cat || '';
+                const name = (card.dataset.name || '').toLowerCase();
+                const brand = (card.dataset.brand || '').toLowerCase();
+                const cat = (card.dataset.cat || '').toLowerCase();
+                const tags = (card.dataset.tags || '').toLowerCase();
                 
-                const matchSearch = name.includes(search) || brand.includes(search);
-                const matchBrand = (brandFilter === 'all') || (brand === brandFilter);
-                const matchCat = (catFilter === 'all') || (cat === catFilter);
+                const searchableText = `${name} ${brand} ${cat} ${tags}`;
+                let matchSearch = true;
+                
+                // Advanced search: require all terms to match somewhere
+                if (terms.length > 0) {
+                    matchSearch = terms.every(term => searchableText.includes(term));
+                }
+                
+                const matchBrand = (brandFilter === 'all') || ((card.dataset.brand || '') === brandFilter);
+                const matchCat = (catFilter === 'all') || ((card.dataset.cat || '') === catFilter);
                 
                 if (matchSearch && matchBrand && matchCat) {
                     card.style.display = 'flex';
@@ -1169,8 +1206,9 @@ def generate_site():
             price = p.get("min_price", 0)
             handle = p["handle"]
             safe_name = p['title'].lower().replace('"', '&quot;')
+            tags_safe = str(p.get("tags", "")).replace('"', '&quot;')
             grid_html += f"""
-            <div class="card" onclick="openModal('{handle}')" data-name="{safe_name}" data-brand="{p['brand']}" data-cat="{p['product_type']}" data-price="{price}">
+            <div class="card" onclick="openModal('{handle}')" data-name="{safe_name}" data-brand="{p['brand']}" data-cat="{p['product_type']}" data-price="{price}" data-tags="{tags_safe}">
                 <img src="{img}" alt="{p['title']}" class="card-img" loading="lazy">
                 <div class="card-body">
                     <div class="card-brand">{p['brand']}</div>
