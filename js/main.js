@@ -38,6 +38,43 @@
         
         let currentCheckoutItem = null;
         
+        
+        // Mobile Sidebar Toggle
+        const hamburger = document.getElementById('hamburger');
+        const sidebar = document.getElementById('sidebar');
+        const sidebarOverlay = document.getElementById('sidebar-overlay');
+        
+        if (hamburger && sidebar && sidebarOverlay) {
+            function toggleSidebar() {
+                sidebar.classList.toggle('open');
+                sidebarOverlay.classList.toggle('active');
+                document.body.style.overflow = sidebar.classList.contains('open') ? 'hidden' : '';
+            }
+            hamburger.addEventListener('click', toggleSidebar);
+            sidebarOverlay.addEventListener('click', toggleSidebar);
+        }
+        
+        // Bottom Nav Cart update
+        function updateBottomNavCart() {
+            const bnavCartBadge = document.getElementById('bnav-cart-badge');
+            if (bnavCartBadge) {
+                const count = cart.reduce((acc, item) => acc + item.qty, 0);
+                if (count > 0) {
+                    bnavCartBadge.textContent = count;
+                    bnavCartBadge.style.display = 'flex';
+                } else {
+                    bnavCartBadge.style.display = 'none';
+                }
+            }
+        }
+        // Patch updateCart function to call updateBottomNavCart
+        const oldUpdateCart = updateCart;
+        updateCart = function() {
+            oldUpdateCart();
+            updateBottomNavCart();
+        };
+        setTimeout(updateBottomNavCart, 500);
+
         // -- 1. CART LOGIC --
         
         function updateCart() {
@@ -222,6 +259,7 @@
             const email = document.getElementById('c_email').value;
             const phone = document.getElementById('c_phone').value;
             const discordUser = document.getElementById('c_discord').value || "Not provided";
+            const paymentMethod = document.getElementById('c_payment').value;
             const address = `${document.getElementById('c_address').value}, ${document.getElementById('c_city').value}, ${document.getElementById('c_state').value} ${document.getElementById('c_zip').value}`;
             
             // Build Items string for Discord (truncate if extremely long)
@@ -242,7 +280,8 @@
                         { name: "Phone Number", value: phone, inline: true },
                         { name: "Discord", value: discordUser, inline: true },
                         { name: "Email", value: email, inline: false },
-                        { name: "Shipping Address", value: address, inline: false }
+                        { name: "Shipping Address", value: address, inline: false },
+                        { name: "Payment Method", value: paymentMethod, inline: false }
                     ],
                     footer: { text: "Pixie's Pantry Automated Multi-Item Checkout" },
                     timestamp: new Date().toISOString()

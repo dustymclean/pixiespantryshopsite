@@ -543,7 +543,42 @@ def generate_site():
     .filter-select { padding: 10px 14px; border: 1px solid var(--border); border-radius: 8px; font-size: 13px; background: #fff; cursor: pointer; outline: none; }
     .filter-select:focus { border-color: var(--primary); }
     
+
+    /* Mobile App-like Experience */
+    .mobile-header { display: none; background: #000; color: #fff; padding: 15px 20px; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 900; }
+    .mobile-logo { font-size: 20px; font-weight: 800; color: #fff; text-decoration: none; }
+    .mobile-logo span { color: var(--gold); }
+    .hamburger { display: flex; flex-direction: column; gap: 5px; cursor: pointer; }
+    .hamburger span { display: block; width: 25px; height: 3px; background: #fff; border-radius: 3px; transition: 0.3s; }
+    
+    .bottom-nav { display: none; position: fixed; bottom: 0; left: 0; right: 0; background: #fff; border-top: 1px solid var(--border); z-index: 900; padding-bottom: env(safe-area-inset-bottom); box-shadow: 0 -5px 15px rgba(0,0,0,0.05); }
+    .bottom-nav-inner { display: flex; justify-content: space-around; align-items: center; height: 60px; }
+    .bnav-item { display: flex; flex-direction: column; align-items: center; justify-content: center; color: var(--muted); text-decoration: none; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; flex: 1; }
+    .bnav-item svg { width: 22px; height: 22px; margin-bottom: 4px; fill: currentColor; }
+    .bnav-item.active, .bnav-item:hover { color: var(--gold); }
+
     @media (max-width: 900px) {
+        .mobile-header { display: flex; }
+        .bottom-nav { display: block; }
+        .sidebar { transform: translateX(-100%); z-index: 1000; box-shadow: 5px 0 15px rgba(0,0,0,0.1); width: 280px; transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
+        .sidebar.open { transform: translateX(0); }
+        .sidebar-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.5); z-index: 999; display: none; backdrop-filter: blur(4px); }
+        .sidebar-overlay.active { display: block; }
+        .main-wrapper { margin-left: 0; padding-bottom: 80px; margin-top: 0; }
+        .banner { position: static; }
+        .main-content { padding: 20px; }
+        .page-title { font-size: 24px; }
+        .grid { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 15px; }
+        .card-img { height: 180px; padding: 10px; }
+        .card-body { padding: 15px; }
+        .card-title { font-size: 14px; }
+        .card-price { font-size: 16px; margin-bottom: 10px; }
+        .btn { font-size: 12px; padding: 8px 15px; }
+        .cart-float { display: none; /* Hide floating cart on mobile in favor of bottom nav */ }
+        .toolbar { padding-bottom: 15px; margin-bottom: 20px; }
+    }
+
+    @media (max-width: 900px) { /* old media block */
         .toolbar { flex-direction: column; align-items: flex-start; gap: 15px; }
         .toolbar-right { width: 100%; flex-wrap: wrap; }
         .filter-select { flex: 1; }
@@ -631,7 +666,42 @@ def generate_site():
     .banner a:hover { color: #fff; }
     .sidebar { top: 36px; /* Offset for banner */ }
     .main-wrapper { margin-top: 36px; /* Offset for banner */ }
-    @media (max-width: 900px) { .sidebar { top: 0; } }
+
+    /* Mobile App-like Experience */
+    .mobile-header { display: none; background: #000; color: #fff; padding: 15px 20px; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 900; }
+    .mobile-logo { font-size: 20px; font-weight: 800; color: #fff; text-decoration: none; }
+    .mobile-logo span { color: var(--gold); }
+    .hamburger { display: flex; flex-direction: column; gap: 5px; cursor: pointer; }
+    .hamburger span { display: block; width: 25px; height: 3px; background: #fff; border-radius: 3px; transition: 0.3s; }
+    
+    .bottom-nav { display: none; position: fixed; bottom: 0; left: 0; right: 0; background: #fff; border-top: 1px solid var(--border); z-index: 900; padding-bottom: env(safe-area-inset-bottom); box-shadow: 0 -5px 15px rgba(0,0,0,0.05); }
+    .bottom-nav-inner { display: flex; justify-content: space-around; align-items: center; height: 60px; }
+    .bnav-item { display: flex; flex-direction: column; align-items: center; justify-content: center; color: var(--muted); text-decoration: none; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; flex: 1; }
+    .bnav-item svg { width: 22px; height: 22px; margin-bottom: 4px; fill: currentColor; }
+    .bnav-item.active, .bnav-item:hover { color: var(--gold); }
+
+    @media (max-width: 900px) {
+        .mobile-header { display: flex; }
+        .bottom-nav { display: block; }
+        .sidebar { transform: translateX(-100%); z-index: 1000; box-shadow: 5px 0 15px rgba(0,0,0,0.1); width: 280px; transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
+        .sidebar.open { transform: translateX(0); }
+        .sidebar-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.5); z-index: 999; display: none; backdrop-filter: blur(4px); }
+        .sidebar-overlay.active { display: block; }
+        .main-wrapper { margin-left: 0; padding-bottom: 80px; margin-top: 0; }
+        .banner { position: static; }
+        .main-content { padding: 20px; }
+        .page-title { font-size: 24px; }
+        .grid { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 15px; }
+        .card-img { height: 180px; padding: 10px; }
+        .card-body { padding: 15px; }
+        .card-title { font-size: 14px; }
+        .card-price { font-size: 16px; margin-bottom: 10px; }
+        .btn { font-size: 12px; padding: 8px 15px; }
+        .cart-float { display: none; /* Hide floating cart on mobile in favor of bottom nav */ }
+        .toolbar { padding-bottom: 15px; margin-bottom: 20px; }
+    }
+
+    @media (max-width: 900px) { /* old media block */ .sidebar { top: 0; } }
 
     /* Floating Cart */
     .cart-float { position: fixed; bottom: 30px; right: 30px; background: #000; color: #fff; width: 64px; height: 64px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 24px; cursor: pointer; box-shadow: 0 10px 25px rgba(0,0,0,0.3); z-index: 900; transition: transform 0.2s; border: 2px solid var(--gold); }
@@ -653,7 +723,42 @@ def generate_site():
     .remove-btn { color: red; background: none; border: none; cursor: pointer; font-size: 12px; text-decoration: underline; padding: 5px; }
     .cart-total-row { display: flex; justify-content: space-between; align-items: center; font-size: 20px; font-weight: bold; margin-bottom: 20px; border-top: 2px solid #000; padding-top: 20px; }
     
+
+    /* Mobile App-like Experience */
+    .mobile-header { display: none; background: #000; color: #fff; padding: 15px 20px; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 900; }
+    .mobile-logo { font-size: 20px; font-weight: 800; color: #fff; text-decoration: none; }
+    .mobile-logo span { color: var(--gold); }
+    .hamburger { display: flex; flex-direction: column; gap: 5px; cursor: pointer; }
+    .hamburger span { display: block; width: 25px; height: 3px; background: #fff; border-radius: 3px; transition: 0.3s; }
+    
+    .bottom-nav { display: none; position: fixed; bottom: 0; left: 0; right: 0; background: #fff; border-top: 1px solid var(--border); z-index: 900; padding-bottom: env(safe-area-inset-bottom); box-shadow: 0 -5px 15px rgba(0,0,0,0.05); }
+    .bottom-nav-inner { display: flex; justify-content: space-around; align-items: center; height: 60px; }
+    .bnav-item { display: flex; flex-direction: column; align-items: center; justify-content: center; color: var(--muted); text-decoration: none; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; flex: 1; }
+    .bnav-item svg { width: 22px; height: 22px; margin-bottom: 4px; fill: currentColor; }
+    .bnav-item.active, .bnav-item:hover { color: var(--gold); }
+
     @media (max-width: 900px) {
+        .mobile-header { display: flex; }
+        .bottom-nav { display: block; }
+        .sidebar { transform: translateX(-100%); z-index: 1000; box-shadow: 5px 0 15px rgba(0,0,0,0.1); width: 280px; transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
+        .sidebar.open { transform: translateX(0); }
+        .sidebar-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.5); z-index: 999; display: none; backdrop-filter: blur(4px); }
+        .sidebar-overlay.active { display: block; }
+        .main-wrapper { margin-left: 0; padding-bottom: 80px; margin-top: 0; }
+        .banner { position: static; }
+        .main-content { padding: 20px; }
+        .page-title { font-size: 24px; }
+        .grid { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 15px; }
+        .card-img { height: 180px; padding: 10px; }
+        .card-body { padding: 15px; }
+        .card-title { font-size: 14px; }
+        .card-price { font-size: 16px; margin-bottom: 10px; }
+        .btn { font-size: 12px; padding: 8px 15px; }
+        .cart-float { display: none; /* Hide floating cart on mobile in favor of bottom nav */ }
+        .toolbar { padding-bottom: 15px; margin-bottom: 20px; }
+    }
+
+    @media (max-width: 900px) { /* old media block */
         .sidebar { transform: translateX(-100%); z-index: 100; transition: transform 0.3s; }
         .main-wrapper { margin-left: 0; }
         .modal { flex-direction: column; overflow-y: auto; }
@@ -708,6 +813,43 @@ def generate_site():
         
         let currentCheckoutItem = null;
         
+        
+        // Mobile Sidebar Toggle
+        const hamburger = document.getElementById('hamburger');
+        const sidebar = document.getElementById('sidebar');
+        const sidebarOverlay = document.getElementById('sidebar-overlay');
+        
+        if (hamburger && sidebar && sidebarOverlay) {
+            function toggleSidebar() {
+                sidebar.classList.toggle('open');
+                sidebarOverlay.classList.toggle('active');
+                document.body.style.overflow = sidebar.classList.contains('open') ? 'hidden' : '';
+            }
+            hamburger.addEventListener('click', toggleSidebar);
+            sidebarOverlay.addEventListener('click', toggleSidebar);
+        }
+        
+        // Bottom Nav Cart update
+        function updateBottomNavCart() {
+            const bnavCartBadge = document.getElementById('bnav-cart-badge');
+            if (bnavCartBadge) {
+                const count = cart.reduce((acc, item) => acc + item.qty, 0);
+                if (count > 0) {
+                    bnavCartBadge.textContent = count;
+                    bnavCartBadge.style.display = 'flex';
+                } else {
+                    bnavCartBadge.style.display = 'none';
+                }
+            }
+        }
+        // Patch updateCart function to call updateBottomNavCart
+        const oldUpdateCart = updateCart;
+        updateCart = function() {
+            oldUpdateCart();
+            updateBottomNavCart();
+        };
+        setTimeout(updateBottomNavCart, 500);
+
         // -- 1. CART LOGIC --
         
         function updateCart() {
@@ -892,6 +1034,7 @@ def generate_site():
             const email = document.getElementById('c_email').value;
             const phone = document.getElementById('c_phone').value;
             const discordUser = document.getElementById('c_discord').value || "Not provided";
+            const paymentMethod = document.getElementById('c_payment').value;
             const address = `${document.getElementById('c_address').value}, ${document.getElementById('c_city').value}, ${document.getElementById('c_state').value} ${document.getElementById('c_zip').value}`;
             
             // Build Items string for Discord (truncate if extremely long)
@@ -912,7 +1055,8 @@ def generate_site():
                         { name: "Phone Number", value: phone, inline: true },
                         { name: "Discord", value: discordUser, inline: true },
                         { name: "Email", value: email, inline: false },
-                        { name: "Shipping Address", value: address, inline: false }
+                        { name: "Shipping Address", value: address, inline: false },
+                        { name: "Payment Method", value: paymentMethod, inline: false }
                     ],
                     footer: { text: "Pixie's Pantry Automated Multi-Item Checkout" },
                     timestamp: new Date().toISOString()
@@ -1153,6 +1297,16 @@ def generate_site():
                             <input type="text" id="c_zip" placeholder="ZIP" required style="flex: 1;">
                         </div>
                     </div>
+                    <div class="input-box">
+                        <label>Preferred Payment Method *</label>
+                        <select id="c_payment" required style="width: 100%; border: 1px solid var(--border); padding: 10px; border-radius: 6px; box-sizing: border-box; font-family: inherit; background: #fff;">
+                            <option value="" disabled selected>Select Payment Method</option>
+                            <option value="Venmo">Venmo</option>
+                            <option value="Cash App">Cash App</option>
+                            <option value="Cash">Cash (Local Only)</option>
+                            <option value="Invoice">Invoice (Credit/Debit via Email)</option>
+                        </select>
+                    </div>
                     <button type="submit" class="btn" style="width: 100%; margin-top: 15px; font-size: 15px; padding: 15px;" id="c_submit">Submit Order</button>
                 </form>
                 <div id="checkout-feedback" style="margin-top: 15px; font-size: 14px; font-weight: bold; text-align: center; display: none;"></div>
@@ -1264,6 +1418,38 @@ def generate_site():
 <body>
     <div class="banner">JOIN THE DISCORD FOR EXCLUSIVE WHOLESALE PRICING &nbsp;·&nbsp; <a href="https://discord.com/invite/ph4ehWXQAe" target="_blank">DISCORD.COM/INVITE/PH4EHWXQAE</a></div>
     {sidebar}
+    
+    <div id="sidebar-overlay" class="sidebar-overlay"></div>
+    
+    <!-- Mobile Header -->
+    <div class="mobile-header">
+        <a href="index.html" class="mobile-logo">Pixie's <span>Pantry</span></a>
+        <div class="hamburger" id="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </div>
+    
+    <!-- Bottom Navigation for Mobile -->
+    <div class="bottom-nav">
+        <div class="bottom-nav-inner">
+            <a href="index.html" class="bnav-item active">
+                <svg viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
+                Home
+            </a>
+            <a href="#" class="bnav-item" onclick="document.querySelector('.search-box').focus(); return false;">
+                <svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+                Search
+            </a>
+            <a href="#" class="bnav-item" onclick="document.getElementById('cart-overlay').classList.add('active'); return false;" style="position: relative;">
+                <svg viewBox="0 0 24 24"><path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z"/></svg>
+                Cart
+                <span id="bnav-cart-badge" style="position:absolute; top:-5px; right:15px; background:red; color:#fff; border-radius:50%; width:16px; height:16px; font-size:9px; display:none; align-items:center; justify-content:center; font-weight:bold;">0</span>
+            </a>
+        </div>
+    </div>
+
     <div class="main-wrapper">
         <main class="main-content">
             {toolbar}
@@ -1348,6 +1534,38 @@ def generate_site():
 <body>
     <div class="banner">JOIN THE DISCORD FOR EXCLUSIVE WHOLESALE PRICING &nbsp;·&nbsp; <a href="https://discord.com/invite/ph4ehWXQAe" target="_blank">DISCORD.COM/INVITE/PH4EHWXQAE</a></div>
     {sidebar}
+    
+    <div id="sidebar-overlay" class="sidebar-overlay"></div>
+    
+    <!-- Mobile Header -->
+    <div class="mobile-header">
+        <a href="index.html" class="mobile-logo">Pixie's <span>Pantry</span></a>
+        <div class="hamburger" id="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </div>
+    
+    <!-- Bottom Navigation for Mobile -->
+    <div class="bottom-nav">
+        <div class="bottom-nav-inner">
+            <a href="index.html" class="bnav-item active">
+                <svg viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
+                Home
+            </a>
+            <a href="#" class="bnav-item" onclick="document.querySelector('.search-box').focus(); return false;">
+                <svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+                Search
+            </a>
+            <a href="#" class="bnav-item" onclick="document.getElementById('cart-overlay').classList.add('active'); return false;" style="position: relative;">
+                <svg viewBox="0 0 24 24"><path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z"/></svg>
+                Cart
+                <span id="bnav-cart-badge" style="position:absolute; top:-5px; right:15px; background:red; color:#fff; border-radius:50%; width:16px; height:16px; font-size:9px; display:none; align-items:center; justify-content:center; font-weight:bold;">0</span>
+            </a>
+        </div>
+    </div>
+
     <div class="main-wrapper">
         <main class="main-content" style="max-width: 800px;">
             <h1 class="page-title">Community Power & Pricing</h1>
@@ -1467,6 +1685,38 @@ def generate_site():
 <body>
     <div class="banner">JOIN THE DISCORD FOR EXCLUSIVE WHOLESALE PRICING &nbsp;·&nbsp; <a href="https://discord.com/invite/ph4ehWXQAe" target="_blank">DISCORD.COM/INVITE/PH4EHWXQAE</a></div>
     {sidebar}
+    
+    <div id="sidebar-overlay" class="sidebar-overlay"></div>
+    
+    <!-- Mobile Header -->
+    <div class="mobile-header">
+        <a href="index.html" class="mobile-logo">Pixie's <span>Pantry</span></a>
+        <div class="hamburger" id="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </div>
+    
+    <!-- Bottom Navigation for Mobile -->
+    <div class="bottom-nav">
+        <div class="bottom-nav-inner">
+            <a href="index.html" class="bnav-item active">
+                <svg viewBox="0 0 24 24"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
+                Home
+            </a>
+            <a href="#" class="bnav-item" onclick="document.querySelector('.search-box').focus(); return false;">
+                <svg viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+                Search
+            </a>
+            <a href="#" class="bnav-item" onclick="document.getElementById('cart-overlay').classList.add('active'); return false;" style="position: relative;">
+                <svg viewBox="0 0 24 24"><path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z"/></svg>
+                Cart
+                <span id="bnav-cart-badge" style="position:absolute; top:-5px; right:15px; background:red; color:#fff; border-radius:50%; width:16px; height:16px; font-size:9px; display:none; align-items:center; justify-content:center; font-weight:bold;">0</span>
+            </a>
+        </div>
+    </div>
+
     <div class="main-wrapper">
         <main class="main-content">
             <div class="auth-container">
