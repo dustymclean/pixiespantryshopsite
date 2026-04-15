@@ -1,0 +1,44 @@
+{
+  "toker_poker_essentials": {
+    "name": "The Essentials Bundle",
+    "description": "Buy 3 Toker Poker items and get 10% off your entire order. Best for grab-and-go users.",
+    "discount_type": "percentage",
+    "discount_value": 10,
+    "min_items": 3,
+    "applies_to": "Toker Poker",
+    "enabled": true,
+    "active": true,
+    "start_date": "2026-04-12",
+    "end_date": null,
+    "website": "tokerpoker.pixiespantryshop.com",
+    "products": ["TP001", "TP002", "TP003", "TP004", "TP005", "TP006"],
+    "surcharge": {
+      "premium_skus": ["TP003", "TP005"],
+      "amount": 1.00
+    },
+    "shipping": {
+      "flat_rate": 4.95
+    }
+  },
+  "toker_poker_pro_collector": {
+    "name": "The Pro Collector Pack",
+    "description": "Buy 5 Toker Poker items and get 1 free. Best for the ultimate custom setup. Free shipping included!",
+    "discount_type": "free_lowest_item",
+    "discount_value": 1,
+    "min_items": 5,
+    "applies_to": "Toker Poker",
+    "enabled": true,
+    "active": true,
+    "start_date": "2026-04-12",
+    "end_date": null,
+    "website": "tokerpoker.pixiespantryshop.com",
+    "products": ["TP001", "TP002", "TP003", "TP004", "TP005", "TP006"],
+    "surcharge": {
+      "premium_skus": ["TP003", "TP005"],
+      "amount": 1.00
+    },
+    "shipping": {
+      "free_threshold": 35.00
+    }
+  }
+}

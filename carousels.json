@@ -1,0 +1,16 @@
+{
+  "carousels": [
+    {
+      "id": "featured_collection",
+      "title": "🔥 Featured Collection",
+      "layout": "grid",
+      "items": []
+    },
+    {
+      "id": "new_arrivals",
+      "title": "✨ New Arrivals",
+      "layout": "slider",
+      "items": []
+    }
+  ]
+}
