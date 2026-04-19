@@ -1,0 +1,82 @@
+[
+    {
+        "title": "Toker Poker - Black",
+        "sku": "RTL-01-A-US-ST-BL",
+        "price": 10.99,
+        "image": "https://cdn.shopify.com/s/files/1/2665/6390/files/black-with-poker-out---simi-edit.jpg?v=1758833927",
+        "description": "Standard Bic - Black",
+        "available": true
+    },
+    {
+        "title": "Toker Poker - Carolina Blue",
+        "sku": "RTL-01-A-US-ST-CA",
+        "price": 10.99,
+        "image": "https://cdn.shopify.com/s/files/1/2665/6390/files/Carolina-Toker-Poker---front-simi-eidt.jpg?v=1758833927",
+        "description": "Standard Bic - Carolina",
+        "available": true
+    },
+    {
+        "title": "Toker Poker - Grey",
+        "sku": "RTL-01-A-US-ST-GR",
+        "price": 10.99,
+        "image": "https://cdn.shopify.com/s/files/1/2665/6390/files/Grey-TP---simi-edit.jpg?v=1758833927",
+        "description": "Standard Bic - Grey",
+        "available": true
+    },
+    {
+        "title": "Toker Poker - Army Green",
+        "sku": "RTL-01-A-US-ST-AR",
+        "price": 10.99,
+        "image": "https://cdn.shopify.com/s/files/1/2665/6390/files/army-with-poker-out---simi-edit.jpg?v=1758833927",
+        "description": "Standard Bic - Army",
+        "available": true
+    },
+    {
+        "title": "Toker Poker - Lavender",
+        "sku": "RTL-01-A-US-ST-LV",
+        "price": 10.99,
+        "image": "https://cdn.shopify.com/s/files/1/2665/6390/files/Pink_17000836-c762-4a31-809f-6168c7d0f56b.jpg?v=1762299070",
+        "description": "Standard Bic - Lavender",
+        "available": true
+    },
+    {
+        "title": "Toker Poker - Magenta",
+        "sku": "RTL-01-A-US-ST-MG",
+        "price": 10.99,
+        "image": "https://cdn.shopify.com/s/files/1/2665/6390/files/regular-poker-14---simi-edit.jpg?v=1758833927",
+        "description": "Standard Bic - Magenta",
+        "available": true
+    },
+    {
+        "title": "Toker Poker - Yellow",
+        "sku": "RTL-01-A-US-ST-YL",
+        "price": 10.99,
+        "image": "https://cdn.shopify.com/s/files/1/2665/6390/files/regular-poker-10---simi-edit-2.jpg?v=1758833927",
+        "description": "Standard Bic - Yellow",
+        "available": true
+    },
+    {
+        "title": "Toker Poker - Orange",
+        "sku": "RTL-01-A-US-ST-OR",
+        "price": 10.99,
+        "image": "https://cdn.shopify.com/s/files/1/2665/6390/files/orange-with-poker-out---simi-edit.jpg?v=1758833927",
+        "description": "Standard Bic - Orange",
+        "available": true
+    },
+    {
+        "title": "Toker Poker - Red Queen (Alice in Wonderland)",
+        "sku": "RTL-01-A-US-AW-RQ",
+        "price": 12.99,
+        "image": "https://cdn.shopify.com/s/files/1/2665/6390/files/RedQueen---revamp.jpg?v=1759356522",
+        "description": "Alice in Wonderland - Red Queen",
+        "available": true
+    },
+    {
+        "title": "Toker Poker - Cheshire Cat (Alice in Wonderland)",
+        "sku": "RTL-01-A-US-AW-CP",
+        "price": 12.99,
+        "image": "https://cdn.shopify.com/s/files/1/2665/6390/files/CheshireCat---revamp.jpg?v=1759356522",
+        "description": "Alice in Wonderland - Cheshire Cat",
+        "available": true
+    }
+]
