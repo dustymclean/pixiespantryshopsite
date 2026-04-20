@@ -93,19 +93,19 @@ def generate_category_page(products, category_name, category_description, output
     <nav class="border-b index-border bg-white sticky top-0 z-50">
         <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
             <div class="flex items-center gap-12">
-                <a href="/index.html" class="flex flex-col">
+                <a href="index.html" class="flex flex-col">
                     <span class="font-extrabold text-xl tracking-tighter leading-none">PIXIE'S PANTRY</span>
                     <span class="text-[9px] font-bold text-slate-400 uppercase tracking-widest mt-1">Clinical Hardware Index</span>
                 </a>
                 <div class="hidden lg:flex gap-8 text-[11px] font-bold uppercase tracking-widest text-slate-500">
-                    <a href="/index.html" class="hover:text-black transition-colors">Home</a>
-                    <a href="/start-here.html" class="hover:text-black transition-colors">Start Here</a>
-                    <a href="/daily-driver.html" class="hover:text-black transition-colors">Daily Driver</a>
-                    <a href="/high-precision.html" class="hover:text-black transition-colors">High Precision</a>
-                    <a href="/accessories.html" class="hover:text-black transition-colors">Accessories</a>
-                    <a href="/audit-methodology.html" class="hover:text-black transition-colors">Audit Methodology</a>
-                    <a href="/catalog-index.html" class="hover:text-black transition-colors">Catalog Index</a>
-                    <a href="/dme-standards.html" class="hover:text-black transition-colors">DME Standards</a>
+                    <a href="index.html" class="hover:text-black transition-colors">Home</a>
+                    <a href="start-here.html" class="hover:text-black transition-colors">Start Here</a>
+                    <a href="daily-driver.html" class="hover:text-black transition-colors">Daily Driver</a>
+                    <a href="high-precision.html" class="hover:text-black transition-colors">High Precision</a>
+                    <a href="accessories.html" class="hover:text-black transition-colors">Accessories</a>
+                    <a href="audit-methodology.html" class="hover:text-black transition-colors">Audit Methodology</a>
+                    <a href="catalog-index.html" class="hover:text-black transition-colors">Catalog Index</a>
+                    <a href="dme-standards.html" class="hover:text-black transition-colors">DME Standards</a>
                 </div>
             </div>
             <div class="flex items-center gap-6">
