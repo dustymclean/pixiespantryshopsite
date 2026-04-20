@@ -236,20 +236,44 @@ def fetch_dyspensr_data():
         with open(CSV_PATH, "r", encoding="utf-8") as f:
             reader = list(csv.DictReader(f))
             for row in reader:
-                sku = row.get("SKU", "").strip()
-                title = row.get("Product Name", "").strip()
-                var = row.get("Variant", "").strip()
+                sku = (row.get("SKU") or "").strip()
+                title = (row.get("Product Name") or "").strip()
+                var = (row.get("Variant") or "").strip()
                 if not sku or sku.lower() == "none":
                     sku = "GEN-" + hashlib.md5((title + var).encode()).hexdigest()[:8].upper()
                 
-                status = row.get("Status", "").strip() or "Active"
+                status = (row.get("Status") or "").strip() or "Active"
                 price = row.get("Your Retail Price", "")
-                cat = row.get("Product Type", "Accessories").strip() or "Accessories"
-                brand = row.get("Brand", "Premium").strip() or "Premium"
-                image_url = row.get("Image URL", "").strip()
-                seo_title = row.get("SEO Title", "").strip()
-                meta_description = row.get("Meta Description", "").strip()
-                url_handle = row.get("URL Handle", "").strip()
+                cat = (row.get("Product Type") or "Accessories").strip() or "Accessories"
+                brand = (row.get("Brand") or "Premium").strip() or "Premium"
+                image_url = (row.get("Image URL") or "").strip()
+                url_handle = (row.get("URL Handle") or "").strip()
+                status = (row.get("Status") or "").strip()
+                
+                # Clean SKU - extract Piece SKU if format is "Piece: X\nCase: Y"
+                raw_sku = (row.get("SKU") or "").strip()
+                if "Piece:" in raw_sku:
+                    # Extract the Piece SKU from multi-line format
+                    sku = raw_sku.split("\n")[0].replace("Piece:", "").strip()
+                else:
+                    sku = raw_sku
+                
+                if not sku or sku.lower() == "none":
+                    sku = "GEN-" + hashlib.md5((title + var).encode()).hexdigest()[:8].upper()
+                
+                # For Toker Poker products with shifted columns, reconstruct image URL
+                if not image_url and "tokerpoker.pixiespantryshop.com" in status:
+                    image_url = status
+                    status = "Active"  # Reset status since it was shifted
+                elif not image_url and url_handle and "toker-poker" in url_handle:
+                    # Fallback: construct from URL handle
+                    image_url = f"https://tokerpoker.pixiespantryshop.com/images/{url_handle.replace('toker-poker-', '')}.jpg"
+                
+                if not status or status == "https://tokerpoker.pixiespantryshop.com":
+                    status = "Active"
+                
+                seo_title = (row.get("SEO Title") or "").strip()
+                meta_description = (row.get("Meta Description") or "").strip()
                 search_tags = row.get("Search Tags", "")
                 
                 csv_db[sku] = {
@@ -431,6 +455,21 @@ def fetch_dyspensr_data():
                     sp["tags"] = str(tags_list or "").lower().replace('"', '')
                     
                 grouped_products[sp["title"]] = sp
+
+    # -- TOKER POKER INTEGRATION --
+    toker_path = "/Users/dusty/Desktop/Pixies_Vape_Shop/toker_poker_integrated.json"
+    if os.path.exists(toker_path):
+        print("Loading Toker Poker products...")
+        with open(toker_path, "r", encoding="utf-8") as tf:
+            tp_data = json.load(tf)
+            for tp in tp_data:
+                # Clean up price string to float
+                for v in tp.get("in_stock_variants", []):
+                    try:
+                        v["price"] = str(float(v.get("price", 0)))
+                    except: pass
+                grouped_products[tp["title"]] = tp
+            print(f"Added {len(tp_data)} Toker Poker products.")
 
     return list(grouped_products.values())
 
