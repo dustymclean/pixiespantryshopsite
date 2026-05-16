@@ -1,44 +1,16 @@
 {
-  "toker_poker_essentials": {
-    "name": "The Essentials Bundle",
-    "description": "Buy 3 Toker Poker items and get 10% off your entire order. Best for grab-and-go users.",
-    "discount_type": "percentage",
-    "discount_value": 10,
-    "min_items": 3,
-    "applies_to": "Toker Poker",
-    "enabled": true,
-    "active": true,
-    "start_date": "2026-04-12",
-    "end_date": null,
-    "website": "tokerpoker.pixiespantryshop.com",
-    "products": ["TP001", "TP002", "TP003", "TP004", "TP005", "TP006"],
-    "surcharge": {
-      "premium_skus": ["TP003", "TP005"],
-      "amount": 1.00
-    },
-    "shipping": {
-      "flat_rate": 4.95
-    }
+  "therapeutic_starter_kit": {
+    "name": "Therapeutic Starter Kit",
+    "description": "Everything you need for smooth, effortless sessions. Includes a premium filtration device and precision power supply.",
+    "discount": 15,
+    "products": ["WP974", "V1218D"],
+    "active": true
   },
-  "toker_poker_pro_collector": {
-    "name": "The Pro Collector Pack",
-    "description": "Buy 5 Toker Poker items and get 1 free. Best for the ultimate custom setup. Free shipping included!",
-    "discount_type": "free_lowest_item",
-    "discount_value": 1,
-    "min_items": 5,
-    "applies_to": "Toker Poker",
-    "enabled": true,
-    "active": true,
-    "start_date": "2026-04-12",
-    "end_date": null,
-    "website": "tokerpoker.pixiespantryshop.com",
-    "products": ["TP001", "TP002", "TP003", "TP004", "TP005", "TP006"],
-    "surcharge": {
-      "premium_skus": ["TP003", "TP005"],
-      "amount": 1.00
-    },
-    "shipping": {
-      "free_threshold": 35.00
-    }
+  "premium_extraction_bundle": {
+    "name": "Premium Extraction Bundle",
+    "description": "High-performance extraction system with lab-tested durability. Perfect for rich, flavorful sessions.",
+    "discount": 20,
+    "products": ["WP976", "WP954"],
+    "active": true
   }
 }

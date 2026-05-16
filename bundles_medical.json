@@ -1,0 +1,123 @@
+{
+  "bundles": [
+    {
+      "name": "Wellness Starter Kit",
+      "description": "Everything you need to begin your clinical botanical administration journey. Includes a precision Thermal Extraction Device (TED), threaded dosing pods, and a botanical homogenizer for optimal preparation.",
+      "products": [
+        {"name": "DaVinci IQ3 (Thermal Extraction Device)", "sku": "DAV-IQ3", "category": "Cluster A: Active Electronic TEDs"},
+        {"name": "Threaded Dosing Pods (5-Pack)", "sku": "DAV-POD-5PK", "category": "Cluster J: Clinical Extract Applicators"},
+        {"name": "Botanical Homogenizer (Grinder)", "sku": "GRINDER-STD", "category": "Cluster D: Botanical Homogenizers"}
+      ],
+      "price": 299.00,
+      "savings": 15,
+      "brands": ["DaVinci"]
+    },
+    {
+      "name": "Clinical Extract Bundle",
+      "description": "A complete solution for administering purified extracts. Includes a Concentrate Administration Console, essential extracts, and a chemical sterilization agent for hygiene.",
+      "products": [
+        {"name": "ARTIQ (Concentrate Administration Console)", "sku": "DAV-ARTIQ", "category": "Cluster B: Passive/Manual TEDs"},
+        {"name": "Purified Essential Extracts (3-Pack)", "sku": "EXTRACT-3PK", "category": "Cluster J: Clinical Extract Applicators"},
+        {"name": "Clinical Sterilization Solvent (ISO Alcohol)", "sku": "CLEAN-ISO", "category": "Cluster G: Chemical Sterilization Agents"}
+      ],
+      "price": 249.00,
+      "savings": 20,
+      "brands": ["DaVinci"]
+    },
+    {
+      "name": "Hydrated Filtration System",
+      "description": "A premium hydro-filtration vessel for purified aerosol delivery. Includes a hydrated particulate filter, diffused intake conduit, and aerosol filtration matrix for optimal performance.",
+      "products": [
+        {"name": "Eyce Silicone Hydro-Filtration Vessel", "sku": "EYCE-BONG", "category": "Cluster C: Hydrated Filters"},
+        {"name": "Diffused Intake Conduit (Downstem)", "sku": "EYCE-DOWNSTEM", "category": "Cluster C: Hydrated Filters"},
+        {"name": "Aerosol Filtration Matrix (Percolator)", "sku": "EYCE-PERC", "category": "Cluster C: Hydrated Filters"}
+      ],
+      "price": 129.00,
+      "savings": 10,
+      "brands": ["Eyce"]
+    },
+    {
+      "name": "Precision Dosing Kit",
+      "description": "A reusable kit for precise botanical administration. Includes a mass verification instrument, modular dosing pods, and a metabolite preservation unit for storage.",
+      "products": [
+        {"name": "Mass Verification Instrument (Scale)", "sku": "SCALE-PRECISION", "category": "Cluster F: Mass Verification Instruments"},
+        {"name": "Modular Dosing Pods (3-Pack)", "sku": "POD-3PK", "category": "Cluster J: Clinical Extract Applicators"},
+        {"name": "Metabolite Preservation Unit (Stash Box)", "sku": "STASH-BOX", "category": "Cluster E: Atmospheric Preservation Units"}
+      ],
+      "price": 89.00,
+      "savings": 12,
+      "brands": ["Generic"]
+    },
+    {
+      "name": "Thermal Extraction Pro Bundle",
+      "description": "The ultimate bundle for thermal extraction enthusiasts. Includes a portable TED, purified extracts, and a chemical sterilization agent for maintenance.",
+      "products": [
+        {"name": "PAX 3 (Portable Thermal Extraction Device)", "sku": "PAX-3", "category": "Cluster A: Active Electronic TEDs"},
+        {"name": "Purified Essential Extracts (5-Pack)", "sku": "EXTRACT-5PK", "category": "Cluster J: Clinical Extract Applicators"},
+        {"name": "Clinical Sterilization Solvent (ISO Alcohol)", "sku": "CLEAN-ISO", "category": "Cluster G: Chemical Sterilization Agents"}
+      ],
+      "price": 279.00,
+      "savings": 18,
+      "brands": ["PAX"]
+    },
+    {
+      "name": "DaVinci IQ3 + Accessories",
+      "description": "The DaVinci IQ3 Thermal Extraction Device with stainless dosing pods and a dosage grinder for precise botanical administration.",
+      "products": [
+        {"name": "DaVinci IQ3 (Thermal Extraction Device)", "sku": "DAV-IQ3", "category": "Cluster A: Active Electronic TEDs"},
+        {"name": "Stainless Dosing Pods (3-Pack)", "sku": "DAV-POD-3PK-STEEL", "category": "Cluster J: Clinical Extract Applicators"},
+        {"name": "Dosage Grinder", "sku": "DAV-GRINDER", "category": "Cluster D: Botanical Homogenizers"}
+      ],
+      "price": 329.00,
+      "savings": 18,
+      "brands": ["DaVinci"]
+    },
+    {
+      "name": "PAX 3 Complete Kit",
+      "description": "The PAX 3 Portable Thermal Extraction Device with a concentrate insert and cleaning kit for versatile clinical use.",
+      "products": [
+        {"name": "PAX 3 (Portable Thermal Extraction Device)", "sku": "PAX-3", "category": "Cluster A: Active Electronic TEDs"},
+        {"name": "Concentrate Insert", "sku": "PAX-INSERT", "category": "Cluster J: Clinical Extract Applicators"},
+        {"name": "Cleaning Kit", "sku": "PAX-CLEAN", "category": "Cluster G: Chemical Sterilization Agents"}
+      ],
+      "price": 249.00,
+      "savings": 17,
+      "brands": ["PAX"]
+    },
+    {
+      "name": "ARTIQ + Groove Cara",
+      "description": "The ARTIQ Concentrate Administration Console with a Groove Cara dual-use attachment for clinical extract administration.",
+      "products": [
+        {"name": "ARTIQ (Concentrate Administration Console)", "sku": "DAV-ARTIQ", "category": "Cluster B: Passive/Manual TEDs"},
+        {"name": "Groove Cara (Dual-Use Attachment)", "sku": "DAV-GROOVE", "category": "Cluster J: Clinical Extract Applicators"}
+      ],
+      "price": 549.00,
+      "savings": 15,
+      "brands": ["DaVinci"]
+    },
+    {
+      "name": "Eyce Silicone Bong + Extract Kit",
+      "description": "A silicone hydro-filtration vessel with essential extracts and a clinical sterilization agent for purified aerosol delivery.",
+      "products": [
+        {"name": "Eyce Silicone Hydro-Filtration Vessel", "sku": "EYCE-BONG", "category": "Cluster C: Hydrated Filters"},
+        {"name": "Purified Essential Extracts (3-Pack)", "sku": "EXTRACT-3PK", "category": "Cluster J: Clinical Extract Applicators"},
+        {"name": "Clinical Sterilization Solvent (ISO Alcohol)", "sku": "CLEAN-ISO", "category": "Cluster G: Chemical Sterilization Agents"}
+      ],
+      "price": 159.00,
+      "savings": 16,
+      "brands": ["Eyce"]
+    },
+    {
+      "name": "Toker Poker Pro Kit",
+      "description": "A reusable thermal initiator with a mass verification instrument and metabolite preservation unit for precise dosing.",
+      "products": [
+        {"name": "Toker Poker (Thermal Initiator)", "sku": "TOKER-POKER", "category": "Cluster F: Mass Verification Instruments"},
+        {"name": "Mass Verification Instrument (Scale)", "sku": "SCALE-PRECISION", "category": "Cluster F: Mass Verification Instruments"},
+        {"name": "Metabolite Preservation Unit (Stash Box)", "sku": "STASH-BOX", "category": "Cluster E: Atmospheric Preservation Units"}
+      ],
+      "price": 79.00,
+      "savings": 20,
+      "brands": ["Toker Poker"]
+    }
+  ]
+}

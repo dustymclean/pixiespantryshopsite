@@ -1,0 +1,14 @@
+
+🦾 Pixie's Pantry Unified Dashboard
+==================================================
+
+Loading product catalogs...
+  ✓ Dyspensr: 4811 products
+Traceback (most recent call last):
+  File "/Users/dusty/Desktop/Storefront_Dashboard/dashboard_v2.py", line 463, in <module>
+    main()
+  File "/Users/dusty/Desktop/Storefront_Dashboard/dashboard_v2.py", line 443, in main
+    load_synergy_products()
+  File "/Users/dusty/Desktop/Storefront_Dashboard/dashboard_v2.py", line 166, in load_synergy_products
+    sku = item.get("sku", "").strip()
+AttributeError: 'str' object has no attribute 'get'

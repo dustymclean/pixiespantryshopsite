@@ -165,8 +165,10 @@
     .age-gate-no:hover { border-color: #555; color: #888; }
     .age-gate-disclaimer { font-size: 11px; color: #444; margin-top: 30px; line-height: 1.6; }
 
-    /* Banner */
-    .banner { background: #000; color: #fff; text-align: center; padding: 10px; font-size: 11px; font-weight: 900; letter-spacing: 2px; position: fixed; top: 0; left: 0; right: 0; z-index: 1000; text-transform: uppercase; border-bottom: 2px solid var(--gold); }
+    /* Banner - Scrolling Marquee */
+    .banner { background: #000; color: #fff; text-align: center; padding: 10px 0; font-size: 12px; font-weight: 900; letter-spacing: 2px; position: fixed; top: 0; left: 0; right: 0; z-index: 1000; text-transform: uppercase; border-bottom: 2px solid var(--gold); overflow: hidden; white-space: nowrap; }
+    .banner-content { display: inline-block; animation: scroll-banner 20s linear infinite; padding-left: 100%; }
+    @keyframes scroll-banner { 0% { transform: translateX(0); } 100% { transform: translateX(-100%); } }
     .banner a { color: var(--gold); text-decoration: none; transition: 0.3s; }
     .banner a:hover { color: #fff; }
     .sidebar { top: 36px; /* Offset for banner */ }

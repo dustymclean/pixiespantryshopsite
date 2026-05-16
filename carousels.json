@@ -1,16 +1,16 @@
 {
   "carousels": [
     {
-      "id": "featured_collection",
-      "title": "🔥 Featured Collection",
+      "id": "new_arrivals",
+      "title": "New Arrivals",
       "layout": "grid",
-      "items": []
+      "items": ["WP974", "WP975", "WP976"]
     },
     {
-      "id": "new_arrivals",
-      "title": "✨ New Arrivals",
+      "id": "best_sellers",
+      "title": "Best Sellers",
       "layout": "slider",
-      "items": []
+      "items": ["HP266", "V1218D", "WP953"]
     }
   ]
 }
