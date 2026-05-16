@@ -12,3 +12,17 @@ coverage/
 *.env
 .env.local
 .env.*.local
+
+# local Python environments
+venv/
+.venv/
+env/
+ENV/
+__pycache__/
+*.pyc
+
+# local secrets
+.env
+*.env
+.env.local
+.env.*.local
