@@ -1,0 +1,1001 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Pixie’s Pantry — Mississippi hardware, wholesale, patient tools, media kit, and MMCP resources." />
+  <title>Pixie’s Pantry | Mississippi Hardware, Wholesale & Patient Tools</title>
+
+  <style>
+    :root {
+      --pp-bg: #f4efe4;
+      --pp-card: #fffaf0;
+      --pp-card-2: #fbf4e6;
+      --pp-cream: #fff8ea;
+      --pp-green: #0d3b26;
+      --pp-green-2: #092b1c;
+      --pp-green-3: #164a31;
+      --pp-sage: #d8e2cf;
+      --pp-sage-dark: #8ea184;
+      --pp-gold: #c9a227;
+      --pp-gold-2: #e7cf85;
+      --pp-gold-soft: rgba(201, 162, 39, 0.16);
+      --pp-ink: #17150f;
+      --pp-muted: #645d4f;
+      --pp-line: rgba(13, 59, 38, 0.16);
+      --pp-gold-line: rgba(201, 162, 39, 0.32);
+      --pp-shadow: 0 24px 70px rgba(9, 43, 28, 0.16);
+      --pp-shadow-soft: 0 16px 34px rgba(9, 43, 28, 0.11);
+      --pp-radius-xl: 28px;
+      --pp-radius-lg: 20px;
+      --pp-radius-md: 14px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      color: var(--pp-ink);
+      background:
+        radial-gradient(circle at 10% 0%, rgba(201, 162, 39, 0.26), transparent 25%),
+        radial-gradient(circle at 100% 16%, rgba(13, 59, 38, 0.16), transparent 26%),
+        linear-gradient(180deg, #fff9ed 0%, var(--pp-bg) 38%, #e9dfcd 100%);
+      font-family: Georgia, "Times New Roman", serif;
+      line-height: 1.55;
+      padding: 18px;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      opacity: 0.20;
+      background-image:
+        linear-gradient(rgba(13, 59, 38, 0.06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(13, 59, 38, 0.06) 1px, transparent 1px);
+      background-size: 38px 38px;
+      mask-image: linear-gradient(to bottom, #000, transparent 86%);
+    }
+
+    body::after {
+      content: "";
+      position: fixed;
+      inset: 12px;
+      pointer-events: none;
+      border: 1px solid rgba(201, 162, 39, 0.20);
+      border-radius: 34px;
+      opacity: 0.55;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    .page {
+      max-width: 980px;
+      margin: 0 auto;
+      position: relative;
+    }
+
+    .catalog-shell {
+      position: relative;
+      overflow: hidden;
+      border-radius: 34px;
+      border: 1px solid var(--pp-gold-line);
+      background:
+        linear-gradient(180deg, rgba(255, 250, 240, 0.94), rgba(248, 239, 221, 0.88)),
+        var(--pp-card);
+      box-shadow: var(--pp-shadow);
+    }
+
+    .catalog-shell::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background:
+        radial-gradient(circle at 14% 4%, rgba(231, 207, 133, 0.28), transparent 24%),
+        radial-gradient(circle at 88% 10%, rgba(13, 59, 38, 0.12), transparent 28%),
+        linear-gradient(135deg, rgba(255,255,255,0.34), transparent 34%, transparent 70%, rgba(201,162,39,0.10));
+      z-index: 0;
+    }
+
+    .catalog-shell > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    .top-rail {
+      height: 14px;
+      background:
+        linear-gradient(90deg,
+          var(--pp-green-2) 0%,
+          var(--pp-green) 21%,
+          var(--pp-gold) 50%,
+          var(--pp-green-3) 78%,
+          var(--pp-green-2) 100%);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.22);
+    }
+
+    .site-nav {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 9px;
+      padding: 18px 20px 0;
+      font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: 0.76rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--pp-green);
+    }
+
+    .site-nav a {
+      text-decoration: none;
+      padding: 8px 10px;
+      border: 1px solid rgba(13, 59, 38, 0.12);
+      border-radius: 999px;
+      background: rgba(255, 248, 234, 0.66);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.70);
+    }
+
+    .hero {
+      padding: 34px 32px 28px;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 260px;
+      gap: 26px;
+      align-items: stretch;
+      border-bottom: 1px solid var(--pp-line);
+    }
+
+    .hero-copy {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      min-width: 0;
+    }
+
+    .kicker {
+      margin: 0 0 12px;
+      color: var(--pp-gold);
+      font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: 0.78rem;
+      font-weight: 950;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+    }
+
+    h1 {
+      margin: 0;
+      color: var(--pp-green-2);
+      font-size: clamp(3rem, 8vw, 5.8rem);
+      line-height: 0.88;
+      letter-spacing: -0.075em;
+      font-weight: 700;
+    }
+
+    .subtitle {
+      margin: 18px 0 0;
+      color: var(--pp-green);
+      font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: 0.80rem;
+      font-weight: 950;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+    }
+
+    .notice {
+      max-width: 610px;
+      margin: 20px 0 0;
+      color: var(--pp-muted);
+      font-size: 1.08rem;
+    }
+
+    .hero-panel {
+      min-height: 310px;
+      border-radius: 26px;
+      border: 1px solid var(--pp-gold-line);
+      background:
+        radial-gradient(circle at 50% 20%, rgba(231, 207, 133, 0.28), transparent 26%),
+        linear-gradient(180deg, var(--pp-green) 0%, var(--pp-green-2) 100%);
+      color: var(--pp-cream);
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.10),
+        0 20px 42px rgba(9, 43, 28, 0.22);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 22px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .hero-panel::before {
+      content: "CATALOG 4";
+      position: absolute;
+      right: -34px;
+      top: 38px;
+      transform: rotate(90deg);
+      color: rgba(255, 248, 234, 0.10);
+      font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: 1.1rem;
+      font-weight: 950;
+      letter-spacing: 0.24em;
+    }
+
+    .logo-wrap {
+      width: 118px;
+      height: 118px;
+      display: grid;
+      place-items: center;
+      border-radius: 999px;
+      border: 1px solid rgba(231, 207, 133, 0.48);
+      background:
+        radial-gradient(circle at 36% 26%, rgba(255,255,255,0.30), transparent 34%),
+        linear-gradient(145deg, rgba(255,248,234,0.18), rgba(255,248,234,0.06));
+      box-shadow:
+        inset 0 0 0 9px rgba(255,255,255,0.06),
+        0 18px 38px rgba(0,0,0,0.20);
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .logo-main {
+      font-size: 44px;
+      line-height: 1;
+      letter-spacing: -0.10em;
+      color: var(--pp-gold-2);
+      font-weight: 700;
+    }
+
+    .panel-label {
+      margin-top: 16px;
+      color: rgba(255,248,234,0.78);
+      font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: 0.74rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      font-weight: 900;
+    }
+
+    .panel-title {
+      margin: 6px 0 0;
+      font-size: 1.85rem;
+      line-height: 1.02;
+      letter-spacing: -0.04em;
+      color: var(--pp-cream);
+    }
+
+    .panel-meta {
+      display: grid;
+      gap: 10px;
+      margin-top: 20px;
+      font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    .meta-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      border-top: 1px solid rgba(255,248,234,0.14);
+      padding-top: 9px;
+      color: rgba(255,248,234,0.88);
+      font-size: 0.78rem;
+      font-weight: 800;
+    }
+
+    .meta-row span:first-child {
+      color: rgba(231, 207, 133, 0.92);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .section {
+      padding: 28px 32px;
+    }
+
+    .section.compact {
+      padding-top: 20px;
+    }
+
+    .link-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .link-card {
+      position: relative;
+      min-height: 120px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 14px;
+      padding: 18px;
+      border-radius: var(--pp-radius-lg);
+      border: 1px solid rgba(13, 59, 38, 0.12);
+      background:
+        radial-gradient(circle at 100% 0%, rgba(201,162,39,0.12), transparent 26%),
+        linear-gradient(180deg, rgba(255,250,240,0.92), rgba(247,238,219,0.88));
+      text-decoration: none;
+      box-shadow: var(--pp-shadow-soft);
+      overflow: hidden;
+      transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
+    }
+
+    .link-card::before {
+      content: "";
+      position: absolute;
+      inset: 0 0 auto;
+      height: 5px;
+      background: linear-gradient(90deg, var(--pp-green), var(--pp-gold), var(--pp-green-3));
+    }
+
+    .link-card:hover,
+    .link-card:focus-visible {
+      transform: translateY(-3px);
+      border-color: rgba(201, 162, 39, 0.42);
+      box-shadow: 0 22px 46px rgba(9, 43, 28, 0.16);
+      outline: none;
+    }
+
+    .link-card.featured {
+      grid-column: 1 / -1;
+      min-height: 132px;
+      color: var(--pp-cream);
+      border-color: rgba(201, 162, 39, 0.45);
+      background:
+        radial-gradient(circle at 92% 12%, rgba(231,207,133,0.28), transparent 24%),
+        linear-gradient(135deg, var(--pp-green-2), var(--pp-green) 58%, var(--pp-green-3));
+    }
+
+    .link-card.featured::before {
+      background: linear-gradient(90deg, var(--pp-gold), var(--pp-gold-2), var(--pp-gold));
+    }
+
+    .link-top {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+    }
+
+    .icon {
+      width: 44px;
+      height: 44px;
+      flex: 0 0 auto;
+      display: grid;
+      place-items: center;
+      border-radius: 14px;
+      background: rgba(13, 59, 38, 0.08);
+      border: 1px solid rgba(13, 59, 38, 0.08);
+      font-size: 1.25rem;
+    }
+
+    .featured .icon {
+      background: rgba(255,248,234,0.12);
+      border-color: rgba(255,248,234,0.12);
+    }
+
+    .link-label {
+      display: block;
+      color: var(--pp-green-2);
+      font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: 1rem;
+      font-weight: 950;
+      letter-spacing: 0.01em;
+    }
+
+    .featured .link-label {
+      color: var(--pp-cream);
+    }
+
+    .link-sub {
+      display: block;
+      margin-top: 4px;
+      color: var(--pp-muted);
+      font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: 0.82rem;
+      line-height: 1.38;
+    }
+
+    .featured .link-sub {
+      color: rgba(255, 248, 234, 0.78);
+    }
+
+    .link-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: var(--pp-gold);
+      font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: 0.72rem;
+      font-weight: 950;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
+
+    .featured .link-footer {
+      color: var(--pp-gold-2);
+    }
+
+    .divider-title {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 18px;
+      color: var(--pp-green);
+      font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: 0.78rem;
+      font-weight: 950;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      text-align: center;
+    }
+
+    .divider-title::before,
+    .divider-title::after {
+      content: "";
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(201, 162, 39, 0.62), transparent);
+    }
+
+    .catalog-card {
+      border-radius: var(--pp-radius-xl);
+      border: 1px solid var(--pp-gold-line);
+      background:
+        radial-gradient(circle at top right, rgba(201,162,39,0.14), transparent 26%),
+        linear-gradient(180deg, rgba(255,250,240,0.90), rgba(248,239,221,0.86));
+      box-shadow: var(--pp-shadow-soft);
+      padding: 24px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .catalog-card::before {
+      content: "";
+      position: absolute;
+      inset: 0 auto 0 0;
+      width: 8px;
+      background: linear-gradient(180deg, var(--pp-green), var(--pp-gold), var(--pp-green-3));
+    }
+
+    .eyebrow {
+      margin: 0 0 10px;
+      color: #9c7b17;
+      font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: 0.74rem;
+      font-weight: 950;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+    }
+
+    h2 {
+      margin: 0 0 14px;
+      color: var(--pp-green-2);
+      font-size: clamp(1.55rem, 4vw, 2.25rem);
+      line-height: 1.05;
+      letter-spacing: -0.045em;
+      font-weight: 700;
+    }
+
+    h3 {
+      margin: 0 0 8px;
+      color: var(--pp-green);
+      font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: 0.88rem;
+      text-transform: uppercase;
+      letter-spacing: 0.10em;
+      font-weight: 950;
+    }
+
+    p {
+      margin: 0 0 14px;
+    }
+
+    .note-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 18px;
+    }
+
+    .note {
+      border-radius: var(--pp-radius-md);
+      border: 1px solid rgba(13, 59, 38, 0.12);
+      background: rgba(255, 248, 234, 0.66);
+      padding: 16px;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.70);
+    }
+
+    .quote {
+      margin-top: 18px;
+      padding: 18px 18px 18px 20px;
+      border-radius: 18px;
+      border-left: 4px solid var(--pp-gold);
+      background:
+        linear-gradient(180deg, rgba(255,248,234,0.80), rgba(201,162,39,0.12));
+      color: var(--pp-green-2);
+      font-size: 1.08rem;
+      font-style: italic;
+      font-weight: 700;
+    }
+
+    .kit-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 18px;
+    }
+
+    .kit-section {
+      border-radius: var(--pp-radius-md);
+      border: 1px solid rgba(13, 59, 38, 0.12);
+      background: rgba(255, 248, 234, 0.66);
+      padding: 16px;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.70);
+    }
+
+    .kit-section.full {
+      grid-column: 1 / -1;
+    }
+
+    .brand-values {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      padding: 0;
+      margin: 12px 0 0;
+      list-style: none;
+    }
+
+    .brand-values li {
+      padding: 8px 10px;
+      border-radius: 999px;
+      background: linear-gradient(180deg, rgba(216,226,207,0.92), rgba(255,248,234,0.78));
+      border: 1px solid rgba(13, 59, 38, 0.11);
+      color: var(--pp-green-2);
+      font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: 0.78rem;
+      font-weight: 900;
+    }
+
+    .download-button {
+      display: block;
+      margin: 22px 0 8px;
+      padding: 16px 18px;
+      border-radius: 18px;
+      color: var(--pp-cream);
+      text-align: center;
+      text-decoration: none;
+      background:
+        radial-gradient(circle at 88% 0%, rgba(231,207,133,0.25), transparent 30%),
+        linear-gradient(135deg, var(--pp-green-2), var(--pp-green), var(--pp-green-3));
+      box-shadow: 0 18px 34px rgba(9, 43, 28, 0.20);
+      font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-weight: 950;
+      letter-spacing: 0.04em;
+    }
+
+    .download-note {
+      margin: 0;
+      text-align: center;
+      color: var(--pp-muted);
+      font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: 0.82rem;
+    }
+
+    .footer {
+      display: grid;
+      grid-template-columns: 1.3fr 1fr 1fr;
+      gap: 22px;
+      padding: 30px 32px;
+      border-top: 1px solid var(--pp-line);
+      background: rgba(13, 59, 38, 0.96);
+      color: rgba(255, 248, 234, 0.80);
+      font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: 0.82rem;
+    }
+
+    .footer h4 {
+      margin: 0 0 10px;
+      color: var(--pp-cream);
+      font-size: 0.92rem;
+      text-transform: uppercase;
+      letter-spacing: 0.10em;
+    }
+
+    .footer a {
+      display: block;
+      color: rgba(255, 248, 234, 0.78);
+      text-decoration: none;
+      margin: 5px 0;
+    }
+
+    .footer-quote {
+      grid-column: 1 / -1;
+      padding-bottom: 18px;
+      margin-bottom: 2px;
+      border-bottom: 1px solid rgba(255,248,234,0.15);
+      color: var(--pp-cream);
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 1.22rem;
+      font-style: italic;
+      font-weight: 700;
+    }
+
+    .copyright {
+      grid-column: 1 / -1;
+      margin-top: 6px;
+      color: rgba(255, 248, 234, 0.56);
+      font-size: 0.75rem;
+    }
+
+    .hint {
+      color: rgba(255, 248, 234, 0.44);
+      font-style: italic;
+      margin-top: 6px;
+    }
+
+    @keyframes shake {
+      0% { transform: translate(1px, 1px) rotate(0deg); }
+      10% { transform: translate(-1px, -2px) rotate(-1deg); }
+      20% { transform: translate(-3px, 0px) rotate(1deg); }
+      30% { transform: translate(3px, 2px) rotate(0deg); }
+      40% { transform: translate(1px, -1px) rotate(1deg); }
+      50% { transform: translate(-1px, 2px) rotate(-1deg); }
+      100% { transform: translate(0px, 0px) rotate(0deg); }
+    }
+
+    .shake-it {
+      animation: shake 0.5s;
+    }
+
+    @media (max-width: 820px) {
+      body {
+        padding: 10px;
+      }
+
+      body::after {
+        inset: 6px;
+        border-radius: 28px;
+      }
+
+      .catalog-shell {
+        border-radius: 28px;
+      }
+
+      .hero {
+        grid-template-columns: 1fr;
+        padding: 30px 20px 22px;
+      }
+
+      .hero-panel {
+        min-height: 250px;
+      }
+
+      .section {
+        padding: 22px 18px;
+      }
+
+      .link-grid,
+      .note-grid,
+      .kit-grid,
+      .footer {
+        grid-template-columns: 1fr;
+      }
+
+      .link-card.featured,
+      .kit-section.full,
+      .footer-quote,
+      .copyright {
+        grid-column: auto;
+      }
+
+      .site-nav {
+        justify-content: flex-start;
+        overflow-x: auto;
+        flex-wrap: nowrap;
+        padding-left: 18px;
+        padding-right: 18px;
+      }
+
+      .site-nav a {
+        white-space: nowrap;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main class="page">
+    <div class="catalog-shell">
+      <div class="top-rail" aria-hidden="true"></div>
+
+      <nav class="site-nav" aria-label="Pixie’s Pantry quick portals">
+        <a href="https://pixies-pantry.com/the-audit/" target="_blank" rel="noopener noreferrer">The Audit</a>
+        <a href="https://shop.pixiespantryshop.com" target="_blank" rel="noopener noreferrer">Shop</a>
+        <a href="https://pixies-pantry.com/catalog-4/" target="_blank" rel="noopener noreferrer">Catalog 4</a>
+        <a href="https://pixies-pantry.com/trust-center/" target="_blank" rel="noopener noreferrer">Trust Center</a>
+        <a href="https://pixies-pantry.com/knowledge/" target="_blank" rel="noopener noreferrer">Knowledge</a>
+      </nav>
+
+      <section class="hero">
+        <div class="hero-copy">
+          <p class="kicker">Pixie’s Pantry Links · Buyer-Safe Portal</p>
+          <h1>Pixie’s Pantry</h1>
+          <p class="subtitle">Mississippi Hardware · Wholesale · Patient Tools</p>
+          <p class="notice">
+            A polished doorway into the Pixie’s Pantry universe: shop, wholesale, catalog, media kit, Mississippi MMCP shortcuts, and public-facing brand resources.
+          </p>
+        </div>
+
+        <aside class="hero-panel" aria-label="Pixie’s Pantry catalog-style identity panel">
+          <div>
+            <div class="logo-wrap" id="logo" aria-label="Pixie’s Pantry logo">
+              <div class="logo-main">PP</div>
+            </div>
+            <div class="panel-label">Catalog 4 Inspired</div>
+            <div class="panel-title">True Wholesale Depth. Public Brand Access.</div>
+          </div>
+
+          <div class="panel-meta">
+            <div class="meta-row"><span>Mode</span><strong>No-Minimum Pathway</strong></div>
+            <div class="meta-row"><span>Owner</span><strong>Dusty McLean</strong></div>
+            <div class="meta-row"><span>Base</span><strong>Oxford, Mississippi</strong></div>
+          </div>
+        </aside>
+      </section>
+
+      <section class="section">
+        <div class="link-grid" aria-label="Pixie’s Pantry links">
+          <a class="link-card featured" href="https://pixies-pantry.com/media-kit/" target="_blank" rel="noopener noreferrer">
+            <span class="link-top">
+              <span class="icon">📰</span>
+              <span>
+                <span class="link-label">Media Kit</span>
+                <span class="link-sub">Brand story, mission, partner information, and public press materials.</span>
+              </span>
+            </span>
+            <span class="link-footer"><span>Press · Partners · Vendors</span><span>↗</span></span>
+          </a>
+
+          <a class="link-card" href="https://shop.pixiespantryshop.com" target="_blank" rel="noopener noreferrer">
+            <span class="link-top">
+              <span class="icon">🏠</span>
+              <span>
+                <span class="link-label">Original Shop</span>
+                <span class="link-sub">The main Pixie’s Pantry shopping experience and primary product home.</span>
+              </span>
+            </span>
+            <span class="link-footer"><span>Main Storefront</span><span>↗</span></span>
+          </a>
+
+          <a class="link-card" href="https://pixiespantryshop.com" target="_blank" rel="noopener noreferrer">
+            <span class="link-top">
+              <span class="icon">✨</span>
+              <span>
+                <span class="link-label">Pixie’s Pantry Home</span>
+                <span class="link-sub">Company homepage, education resources, updates, and the broader brand hub.</span>
+              </span>
+            </span>
+            <span class="link-footer"><span>Brand Home</span><span>↗</span></span>
+          </a>
+
+          <a class="link-card" href="https://wholesale.pixies-pantry.com" target="_blank" rel="noopener noreferrer">
+            <span class="link-top">
+              <span class="icon">📦</span>
+              <span>
+                <span class="link-label">Wholesale</span>
+                <span class="link-sub">Retail buyer, dispensary, pop-up, and vendor sourcing portal.</span>
+              </span>
+            </span>
+            <span class="link-footer"><span>Buyer Portal</span><span>↗</span></span>
+          </a>
+
+          <a class="link-card" href="https://catalog.pixies-pantry.com" target="_blank" rel="noopener noreferrer">
+            <span class="link-top">
+              <span class="icon">📖</span>
+              <span>
+                <span class="link-label">Wholesale Catalog</span>
+                <span class="link-sub">Curated hardware, accessories, storage, cleaning, and buyer tools.</span>
+              </span>
+            </span>
+            <span class="link-footer"><span>Catalog Access</span><span>↗</span></span>
+          </a>
+
+          <a class="link-card" href="https://msdh.ms.gov/mmcp" target="_blank" rel="noopener noreferrer">
+            <span class="link-top">
+              <span class="icon">🏥</span>
+              <span>
+                <span class="link-label">MS DOH MMCP Login</span>
+                <span class="link-sub">Official Mississippi Medical Cannabis Program portal shortcut.</span>
+              </span>
+            </span>
+            <span class="link-footer"><span>Official Portal</span><span>↗</span></span>
+          </a>
+
+          <a class="link-card" href="https://allotment.pixies-pantry.com" target="_blank" rel="noopener noreferrer">
+            <span class="link-top">
+              <span class="icon">📋</span>
+              <span>
+                <span class="link-label">Unit Allotment Checker</span>
+                <span class="link-sub">Patient-facing shortcut for understanding allotment math and limits.</span>
+              </span>
+            </span>
+            <span class="link-footer"><span>Patient Tool</span><span>↗</span></span>
+          </a>
+
+          <a class="link-card" href="https://www.instagram.com/pixiespantryshop/" target="_blank" rel="noopener noreferrer">
+            <span class="link-top">
+              <span class="icon">📸</span>
+              <span>
+                <span class="link-label">Instagram</span>
+                <span class="link-sub">Behind the scenes, product education, events, and new drops.</span>
+              </span>
+            </span>
+            <span class="link-footer"><span>Social</span><span>↗</span></span>
+          </a>
+
+          <a class="link-card" href="https://facebook.com/pixiespantryshop" target="_blank" rel="noopener noreferrer">
+            <span class="link-top">
+              <span class="icon">👥</span>
+              <span>
+                <span class="link-label">Facebook</span>
+                <span class="link-sub">Local updates, event information, and community-focused posts.</span>
+              </span>
+            </span>
+            <span class="link-footer"><span>Community</span><span>↗</span></span>
+          </a>
+        </div>
+      </section>
+
+      <section class="section compact">
+        <div class="divider-title">About The Pantry</div>
+
+        <div class="catalog-card">
+          <p class="eyebrow">Founded December 2025 · Mississippi</p>
+          <h2>Built from lived experience, technical care, and a refusal to accept low standards.</h2>
+
+          <p>
+            Pixie’s Pantry is a Mississippi-based cannabis accessory, wellness hardware, and wholesale product-intelligence company created to make functional equipment easier to understand, easier to source, and easier to trust.
+          </p>
+
+          <p>
+            The company was shaped by chronic illness, real patient needs, and the belief that equipment should be judged by usefulness, safety, materials, transparency, and dignity — not outdated stigma.
+          </p>
+
+          <p>
+            Our long-term mission is bold: help eradicate the word <strong>paraphernalia</strong> from the way serious wellness hardware is discussed, and push toward a future where qualified equipment can be recognized as legitimate wellness hardware eligible for <strong>FSA/HSA</strong> support.
+          </p>
+
+          <p>
+            Shelf space at Pixie’s Pantry is not automatic. Brands and products must meet our criteria for usefulness, transparency, buyer value, and real-world function. We want our shelf space to go to the people and makers who deserve it.
+          </p>
+
+          <div class="note-grid" aria-label="Pixie’s Pantry buyer notes">
+            <div class="note">
+              <h3>Buyer-Safe Access</h3>
+              <p>Built for people who need the right portal fast: shoppers, vendors, retail buyers, patients, partners, and press.</p>
+            </div>
+            <div class="note">
+              <h3>Catalog 4 Style</h3>
+              <p>Deep green panels, cream catalog cards, gold rules, structured buyer notes, and premium quote-catalog depth.</p>
+            </div>
+          </div>
+
+          <div class="quote">“Transparency isn’t a feature. It’s the foundation.”</div>
+        </div>
+      </section>
+
+      <section class="section compact">
+        <div class="divider-title">Media Kit Preview</div>
+
+        <div class="catalog-card" id="media-kit-preview">
+          <p class="eyebrow">Catalog 4 · True Wholesale · Brand Resource</p>
+          <h2>Pixie’s Pantry Media Kit</h2>
+          <p>
+            A public-facing press and partner resource for understanding who we are, what we are building, and why Mississippi retail deserves better hardware standards.
+          </p>
+
+          <div class="kit-grid">
+            <div class="kit-section">
+              <h3>Who We Are</h3>
+              <p>Mississippi-based product intelligence and wholesale hardware for cannabis accessories, wellness equipment, and buyer education.</p>
+            </div>
+
+            <div class="kit-section">
+              <h3>Founded</h3>
+              <p>Founded in December 2025 to raise the standard for functional hardware and transparent purchasing decisions.</p>
+            </div>
+
+            <div class="kit-section">
+              <h3>Mission</h3>
+              <p>Replace stigma with standards, support real patient needs, and treat serious wellness hardware with seriousness.</p>
+            </div>
+
+            <div class="kit-section">
+              <h3>Retail Criteria</h3>
+              <p>Products must earn shelf space through usefulness, material quality, transparent claims, buyer value, and compatibility.</p>
+            </div>
+
+            <div class="kit-section full">
+              <h3>Brand Values</h3>
+              <ul class="brand-values">
+                <li>Transparency</li>
+                <li>Mississippi-first commerce</li>
+                <li>Patient-aware hardware</li>
+                <li>Real-world compatibility</li>
+                <li>Ethical shelf space</li>
+                <li>Education over stigma</li>
+                <li>Wholesale intelligence</li>
+              </ul>
+            </div>
+          </div>
+
+          <a class="download-button" href="https://pixies-pantry.com/media-kit/" target="_blank" rel="noopener noreferrer">
+            Open Full Media Kit ↗
+          </a>
+
+          <p class="download-note">
+            Use this link for press, partners, vendors, dispensaries, retail buyers, and anyone who needs the official Pixie’s Pantry overview.
+          </p>
+        </div>
+      </section>
+
+      <footer class="footer">
+        <div class="footer-quote">“Transparency isn’t a feature—it’s the foundation.”</div>
+
+        <div>
+          <h4>Pixie’s Pantry</h4>
+          <p>The Standard for Medical-Grade Consumption Technology. 21+.</p>
+          <div class="hint">Tip: triple-click the logo for the hidden shake effect.</div>
+        </div>
+
+        <div>
+          <h4>Portals</h4>
+          <a href="https://shop.pixiespantryshop.com" target="_blank" rel="noopener noreferrer">Main Storefront</a>
+          <a href="https://pixies-pantry.com/the-audit/" target="_blank" rel="noopener noreferrer">The Audit</a>
+          <a href="https://pixies-pantry.com/media-kit/" target="_blank" rel="noopener noreferrer">Media Kit</a>
+        </div>
+
+        <div>
+          <h4>Community</h4>
+          <a href="https://www.instagram.com/pixiespantryshop/" target="_blank" rel="noopener noreferrer">Instagram</a>
+          <a href="https://facebook.com/pixiespantryshop" target="_blank" rel="noopener noreferrer">Facebook</a>
+          <a href="https://pixiespantryshop.com" target="_blank" rel="noopener noreferrer">Brand Home</a>
+        </div>
+
+        <div class="copyright">
+          © 2026 Pixie’s Pantry | AENLP-RSAT Monitored | All Rights Reserved.
+        </div>
+      </footer>
+    </div>
+  </main>
+
+  <script>
+    let clicks = 0;
+    const logo = document.getElementById('logo');
+
+    logo.addEventListener('click', () => {
+      clicks++;
+      if (clicks === 3) {
+        logo.classList.add('shake-it');
+        setTimeout(() => {
+          logo.classList.remove('shake-it');
+          clicks = 0;
+        }, 500);
+      }
+    });
+  </script>
+</body>
+</html>

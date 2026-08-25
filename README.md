@@ -1,18 +1,11 @@
-# Pixie’s Pantry Linktree Site
+# shop.pixiespantryshop.com
 
-A **retro-inspired, visually stunning** Linktree-style hub for Pixie’s Pantry. Directs traffic to:
-- [Pixie’s Pantry Home](https://pixies-pantry.com)
-- [Shop](https://pixies-pantry.com/shop/)
-- [Wholesale](https://pixies-pantry.com/wholesale/)
-- [Catalog](https://pixies-pantry.com/pixies-pantry-wholesale-catalog/)
-- [Instagram](https://www.instagram.com/pixiespantryshop/)
-- [Facebook](https://www.facebook.com/profile.php?id=61588915185415)
-- [MS DoH MMCP Program](https://msdh.ms.gov/msdhsite/_static/47,0,420.html)
-- [Unit Allotment Checker](https://msdh.ms.gov/msdhsite/_static/47,2079,420.html)
+This domain is a **redirect only**. Every request is routed to the live store:
 
-## Features
-✅ **Retro Aesthetic** (Neon colors, scanlines, floating particles)
-✅ **Mobile-Friendly** (Responsive design)
-✅ **Cool Animations** (Hover effects, pulse animations)
-✅ **Easter Eggs** (Konami Code, logo clicks)
-✅ **Hidden Music Player** (Press `M` to play chiptune music)
+    https://pixies-pantry.com/shop
+
+- `index.html` / `404.html` — instant redirect (meta refresh + JS, preserves query string and hash)
+- `archive/` — previous storefront pages, kept for reference, not served
+- `.nojekyll` — serve files as-is
+
+Do not add pages here. All storefront work happens on pixies-pantry.com.
